@@ -1,0 +1,2 @@
+12 najczęstszych liczb, ale odjąć te, które występowały w poprzednim losowaniu,
+szansa, że przejdzie z poprzedniego wynosi ok 55%.

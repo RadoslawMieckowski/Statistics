@@ -1,0 +1,2 @@
+W pakiecie sprawdzane są wystąpienia poszczególnych liczb w losowaniach, i ich częstość.
+mniej więcej z taką samą częstością liczby wypadają.

@@ -1,0 +1,1 @@
+generujemy wyniki na podstawie najbardziej losowego wypluwania liczb z określonych przezdziałów

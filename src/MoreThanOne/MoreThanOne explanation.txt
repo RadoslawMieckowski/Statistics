@@ -1,0 +1,2 @@
+Liczymy i wyświetlamy wyniki, które już pojawiły się w historii lotto
+z wyników widzę, że nigdy żaden wynik się nie powtórzył.

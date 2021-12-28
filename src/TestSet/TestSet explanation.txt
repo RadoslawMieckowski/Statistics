@@ -1,0 +1,5 @@
+Możemy sprawidzić czy dany zestaw liczb powtórzył się w przeszłości.
+w FindAnything sprawdzamy, szanse pojawienia się trójki, czwórki, piątki, lub szóstki na podstawie "szczęśliwego"
+zestawu. Sprawdzamy, czy obstawieanie caly czas jednego zestawu jest lepsze od innych strategii.
+w Test generowałem tablice z kolejnymi liczbami od 1 do 49.
+W FindAnythingII sprawdzam dla trafność dla tablic z kolejnymi liczbami od 1 do 49.

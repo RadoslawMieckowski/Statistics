@@ -1,0 +1,6 @@
+eksperyment polega na skreślaniu 12 liczb, które się powtarzają najczęściej.Losowanie->uaktualnienie statystyk i....
+można stawiać na różne przestrzenie najczęściej wylosowywanych liczb, niekoniecznie najczęstsze.
+Trzeba pamiętać o tym, że im więcej losowań, tym więcej wiemy o całym losowaniu lotto, tzn. uwidoczniły się pewne różnice w
+częstości występowania różnych liczb. Byłyby one bardziej widoczne, gdyby było jescze więcej losowań.
+Pomysł: trzeba przepatrzeć, ile razy wystąpiła dana kombinacja trójek i dwójek (chodzi o eliminacje par liczb, które ze sobą występują względnie rzadko).
+Pamiętajmy o częstości przechodzenia jednej liczby z zestawu do następnego losowania.

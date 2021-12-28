@@ -1,0 +1,2 @@
+liczymy, ile jest takich losowań,gdzie jakakolwiek 2 liczby powtarzają się w następnym losowaniu.
+Na 6661 losowań mamy  997 przypadków, czyli prawie 15%.
