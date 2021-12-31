@@ -54,7 +54,7 @@ public class SimulationsBest12 {
                     System.out.println(key + " wystąpiła "+ sortedMap.get(key)+" razy.");
                 }*/
                 //int mockTable[]=new int[12];
-                Integer mockTable[]=Arrays.copyOfRange(keys.toArray(new Integer[0]),25,37);//37,49
+                Integer mockTable[]=Arrays.copyOfRange(keys.toArray(new Integer[0]),37,49);//37,49
                 int selectedNumbers[]=new int[12];
                 for (int i=0;i<mockTable.length;i++){
                     selectedNumbers[i]=mockTable[i].intValue();
