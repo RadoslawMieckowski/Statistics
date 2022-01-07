@@ -1,0 +1,1 @@
+Wyświetla całe zestawy zadanych piątek (6 liczb), i podaje w którym losowaniu padły.

@@ -3,3 +3,4 @@ mniej więcej z taką samą częstością liczby wypadają.
 CounterOfCouples liczy pojawienia się określonych par liczb.
 CounterOfTrios liczy pojawienia się określonych trójek.
 CounterOfFours liczy pojawienia się określonych czwórek.
+CounterOfFives liczy pojawienia się określonych piątek.

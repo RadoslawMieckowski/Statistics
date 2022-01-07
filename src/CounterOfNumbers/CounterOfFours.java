@@ -9,7 +9,7 @@ public class CounterOfFours {
     public static void main(String[] args) {
         int counter = 0;
         Scanner in;
-        int liczbaPrzypadkow=0;
+        long liczbaPrzypadkow=0;
         Map<String,Integer> map= new HashMap<>();
         LinkedHashMap<String,Integer> sortedMap;
         System.out.println("Liczę.....");
