@@ -12,7 +12,7 @@ public class TestPrintSetsOver5900 {
         while (file.hasNextLine()) {
             int rowCounter = 0;
             String searchedTableString[]=file.nextLine().split("\t");
-            Scanner file2 = new Scanner(new File("src/posortowane losowania.txt"));
+            Scanner file2 = new Scanner(new File("src/losowania.txt"));
             Map<Integer,String> map= new TreeMap<>();
             while (file2.hasNextLine()) {
                 rowCounter++;
