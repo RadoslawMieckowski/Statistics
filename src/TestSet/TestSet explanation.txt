@@ -3,3 +3,9 @@ w FindAnything sprawdzamy, szanse pojawienia się trójki, czwórki, piątki, lu
 zestawu. Sprawdzamy, czy obstawieanie caly czas jednego zestawu jest lepsze od innych strategii.
 w Test generowałem tablice z kolejnymi liczbami od 1 do 49.
 W FindAnythingII sprawdzam dla trafność dla tablic z kolejnymi liczbami od 1 do 49.
+W withOneGuaranteed sprawdzamy szanse na trójkę, czwórkę, piątkę, i szóstkę piątki + jedynki(jedynka jest gwarantowana, bo kupimy 44 losy)
+Formatter formatuje dane z "najczęstszeCzwórki.txt" do "najczęstszeCzwórkiSformatowane.txt"
+ w kodzie trzeba dodać jeszcze dwie liczby do linii, która zostanie wysłana (niech się nie powturzą w zestawie!)
+W WithBestFours statystyka wysyłania 30 najczęstszych czwórek co losowanie. Trafność 57%, ale i tak bardzo się nie opłaca :(
+W WithBestFives to samo co wyżej, ale dla 10 najczęstszych piątek.  !!!!!Coś jest nie tak, powinno być
+przynajmniej 21 piątek, a nie ma ani jednej!!!!!!!!!

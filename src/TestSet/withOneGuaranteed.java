@@ -5,32 +5,28 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class FindAnything {
+public class withOneGuaranteed {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner file=new Scanner(new File("src/losowania.txt"));
         Scanner in=new Scanner(System.in);
         System.out.println("Wprowadź zestaw:");
-        int zestaw[]=new int[12];
-        for(int i=0;i<12;i++){
+        int zestaw[]=new int[5];
+        for(int i=0;i<5;i++){
             zestaw[i]=in.nextInt();
         }
-        System.out.println("Wybrany zestaw liczb: "+Arrays.toString(zestaw));
+        System.out.println("Wybrany zestaw liczb: "+ Arrays.toString(zestaw));
         System.out.println("-----------------------");
         int temptable[]=new int[6];
         in.close();
         int statystyka[]=new int[7];
-        for (int i=1;i<3332;i++){
-            file.nextLine();
-        }
         while(file.hasNextLine()){
             String temptableStr[]=file.nextLine().split("\t");
             for (int i=0;i<6;i++){
                 temptable[i]=Integer.parseInt(temptableStr[i]);
             }
-            System.out.println(Arrays.toString(temptableStr));
-            int counter=0;
+            int counter=1;
             for (int i=0;i<6;i++){
-                for(int j=0;j<12;j++){
+                for(int j=0;j<5;j++){
                     if(zestaw[j]==temptable[i]){
                         counter++;
                         break;
@@ -67,11 +63,11 @@ public class FindAnything {
                     break;
                 }
             }
-            System.out.println("Satystyka: "+Arrays.toString(statystyka));
 
         }
         file.close();
         System.out.println("================PODSUMOWANIE================");
+        System.out.println("Satystyka: "+Arrays.toString(statystyka));
         double partSum =0;
         double sum=0;
         double chances=0;
@@ -86,5 +82,4 @@ public class FindAnything {
         System.out.printf("Szanse na trafienie trójki, czwórki, piątki,lub szóśtki wynosi: %.2f%%" ,chances);
 
     }
-
 }

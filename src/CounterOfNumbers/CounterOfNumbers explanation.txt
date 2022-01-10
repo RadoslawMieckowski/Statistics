@@ -4,3 +4,8 @@ CounterOfCouples liczy pojawienia się określonych par liczb.
 CounterOfTrios liczy pojawienia się określonych trójek.
 CounterOfFours liczy pojawienia się określonych czwórek.
 CounterOfFives liczy pojawienia się określonych piątek.
+Formatter zastępuje | => " "
+TestPrintSets czyta dane z "piątki.txt" i szuka pełnych zestawów liczb, w których te piątki się znajdują.
+TestPrintSetsOver5900 to co wyżej, tylko że są to zestawy, które powtórzyły się względnie niedawno plus
+drukuje dane do wykresu w pliku "daneDoWykresu.txt"
+

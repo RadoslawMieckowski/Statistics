@@ -9,13 +9,13 @@ import java.util.Scanner;
 
 public class SetsWithGivenFives {
     public static void main(String[] args) {
-        int searchedTable[]=new int[6];
+        int searchedTable[]=new int[5];
         int tableToCompare[]=new int[6];
         try {
             Scanner file =new Scanner(new File("src/posortowane losowania.txt"));
             Scanner in=new Scanner(System.in);
-            System.out.println("Wczytaj zestaw 6 liczb (niekoniecznie w kolejności).");
-            for (int i=0;i<6;i++) {
+            System.out.println("Wczytaj zestaw 5 liczb (niekoniecznie w kolejności).");
+            for (int i=0;i<5;i++) {
                 searchedTable[i] = in.nextInt();
             }
             //Arrays.sort(searchedTable);
@@ -30,7 +30,7 @@ public class SetsWithGivenFives {
                 }
                 boolean success=false;
                 int counter=0;
-                for (int i=0;i<6;i++){
+                for (int i=0;i<5;i++){
                     if (list.contains(String.valueOf(searchedTable[i]))){
                         counter++;
                     }
@@ -47,6 +47,7 @@ public class SetsWithGivenFives {
             }
             if(failure) System.out.println("Zestaw: "+Arrays.toString(searchedTable)+
                     " nigdy wcześniej nie wystąpił.");
+            file.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
