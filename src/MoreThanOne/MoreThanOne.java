@@ -9,6 +9,7 @@ public class MoreThanOne {
     static int newTab[]=new int[6];
 
     public static void main(String[] args){
+
         try {
             Scanner inResult=new Scanner(new File("src/posortowane losowania.txt"));
             Scanner inSearch;

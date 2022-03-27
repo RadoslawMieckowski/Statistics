@@ -15,11 +15,11 @@ public class Formatter {
             table=source.nextLine().replace(" | ","\t").split("\t");
             //System.out.println(Arrays.toString(table));
             StringBuilder lineToSend=new StringBuilder("");
-            for (int i=0;i<4;i++){
+            for (int i=0;i<5;i++){
                 lineToSend.append(table[i]+"\t");
             }
-            System.out.println(lineToSend+"11");
-            out.println(lineToSend+"11");
+            System.out.println(lineToSend+"29");
+            out.println(lineToSend+"29");
         }
         out.close();
         source.close();

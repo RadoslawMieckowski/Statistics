@@ -1,1 +1,3 @@
 Wyświetla całe zestawy zadanych piątek (6 liczb), i podaje w którym losowaniu padły.
+FindNewFivesII znajduje nowe piątki (powtórzenia dwójek) na podstawie danych w pliku piątki_wystąpienia.txt
+FindNewFivesIII to co wyżej, ale dla powtórzeń trzech zestawów.
