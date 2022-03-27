@@ -9,13 +9,14 @@ import java.util.Set;
 
 public class FindNewFivesII {
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner in = new Scanner(new File("src/SetsWithGivenFives/piątki_wystąpienia1.txt"));
+        Scanner in = new Scanner(new File("src/SetsWithGivenFives/piątki_wystąpienia_licznik_1.txt"));
         String[] tabOfSix;  //tablica zawięrającalicznik
         String[] tabOfSearchedFives;
         Set<String> setOfsearchedFives;
         Set<String> setOfSix;
         Scanner wszystkieLosowania;
-        System.out.println("Nowe piątki po 2 razy:");
+        //System.out.println("Nowe piątki po 2 razy:");
+        int counterWszystkichDwójek = 0;
         while (in.hasNextLine()) {
             tabOfSix = in.nextLine().replace(" | ", "\t").split("\t");
             //System.out.println("setOfSix" + setOfSix);
@@ -30,11 +31,13 @@ public class FindNewFivesII {
                     counter++;
                 }
             }
-            if(counter == 3) {
+            if(counter == 2) {  //w razie szukania nowych trójek można dać tu 3 zamiast 2
+                counterWszystkichDwójek++;
                 System.out.println(Arrays.toString(tabOfSearchedFives) + "\tlicznik: " + counter);
             }
             wszystkieLosowania.close();
         }
+        System.out.println("wszystkie przypadki łącznie: " + counterWszystkichDwójek);
         in.close();
     }
 
