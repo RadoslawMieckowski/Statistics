@@ -1,4 +1,4 @@
-package CounterOfNumbers;
+package miniLotto;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,15 +7,15 @@ import java.util.stream.Collectors;
 
 public class Counter {
     public static void main(String[] args)  {
-        HashMap<Integer,Integer> map= new HashMap<>(49);
+        HashMap<Integer,Integer> map= new HashMap<>(42);
         LinkedHashMap<Integer,Integer>sortedMap;
 
         try {
             Scanner in;
             int counter;
             //int rowCounter=0;
-            for(int i=1;i<=49;i++){
-                in =new Scanner(new File("src/lotto_plus_parsed.txt"));
+            for(int i=1;i<=42;i++){
+                in =new Scanner(new File("src/miniLotto/wyniki-minilotto-sortowane-parsed.csv"));
                 counter=0;
                 while (in.hasNextInt()){
                     int temp=in.nextInt();
