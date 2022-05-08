@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class FindNewFivesII {
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner in = new Scanner(new File("src/SetsWithGivenFives/piątki_wystąpienia_licznik_1.txt"));
+        Scanner in = new Scanner(new File("src/SetsWithGivenFives/piątki_wystąpienia_licznik_2.txt"));
         String[] tabOfSix;  //tablica zawięrającalicznik
         String[] tabOfSearchedFives;
         Set<String> setOfsearchedFives;
@@ -31,7 +31,7 @@ public class FindNewFivesII {
                     counter++;
                 }
             }
-            if(counter == 2) {  //w razie szukania nowych trójek można dać tu 3 zamiast 2
+            if(counter == 3) {  //w razie szukania nowych trójek można dać tu 3 zamiast 2
                 counterWszystkichDwójek++;
                 System.out.println(Arrays.toString(tabOfSearchedFives) + "\tlicznik: " + counter);
             }

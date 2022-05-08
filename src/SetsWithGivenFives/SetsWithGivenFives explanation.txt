@@ -4,3 +4,6 @@ FindNewFivesIII to co wyżej, ale dla powtórzeń trzech zestawów.
 
 409 dwukrotnych powtórzeń piątek
 3 trzykrotne powtórzenia piątek
+
+
+zobacz, czy da się coś zrobić z losowaniami od 6693. spacje zamiast tabulatora
