@@ -12,7 +12,7 @@ public class SetsWithGivenFives {
         int searchedTable[]=new int[5];
         int tableToCompare[]=new int[6];
         try {
-            Scanner file =new Scanner(new File("src/losowania.txt"));
+            Scanner file =new Scanner(new File("src/lotto_plus_parsed.txt"));
             Scanner in=new Scanner(System.in);
             System.out.println("Wczytaj zestaw 5 liczb (niekoniecznie w kolejności).");
             for (int i=0;i<5;i++) {
@@ -25,7 +25,9 @@ public class SetsWithGivenFives {
                 rowCounter++;
                 List<String> list=new ArrayList<>(6);
                 for (int i=0;i<6;i++){
-                    tableToCompare[i]=file.nextInt();
+//                    if (file.hasNextInt()) {
+                        tableToCompare[i]=file.nextInt();
+//                    }
                     list.add(String.valueOf(tableToCompare[i]));
                 }
                 boolean success=false;
