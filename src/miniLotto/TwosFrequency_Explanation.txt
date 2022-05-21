@@ -1,0 +1,2 @@
+TwosFrequency.java podaje statystykę występowania par dwójek: liste przerw pomiędzy losowaniami,  największa przerwa,
+najmniejsza przerwa, średnia przerwa, Mediana, Trzeci kwantyl, Ostatnie wystąpienie.

@@ -64,6 +64,10 @@ public class TwosFrequency {
                                 "Mediana: " + (Statistics.findMedian(distances))//uwaga: po tej instrukcji distances jest już posortowana!!!
                         );
                         System.out.println(
+                                "Trzeci kwantyl: " +
+                                        (Statistics.findQ3(distances)) + "\t"
+                        );
+                        System.out.println(
                                 "Ostatnie wystąpienie było: " +
                                         (line - points.getLast()) + " losowań temu." + "\t"
                         );
