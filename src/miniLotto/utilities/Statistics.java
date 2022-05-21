@@ -59,8 +59,8 @@ public class Statistics {
 
     private static double calcCosDistance(List<Integer> list1, List<Integer>list2) {
         double liczebnik = 0;
-        int składnik_mianownika1 = 0;
-        int składnik_mianownika2 = 0;
+        int czynnik_mianownika1 = 0;
+        int czynnik_mianownika2 = 0;
         double pierwiastek1;
         double pierwiastek2;
         double mianownik;
@@ -68,11 +68,11 @@ public class Statistics {
 
         for (int i = 0; i < list1.size(); i++) {
             liczebnik += (list1.get(i) * list2.get(i));
-            składnik_mianownika1 +=  pow(list1.get(i), 2);
-            składnik_mianownika2 +=  pow(list2.get(i), 2);
+            czynnik_mianownika1 +=  pow(list1.get(i), 2);
+            czynnik_mianownika2 +=  pow(list2.get(i), 2);
         }
-        pierwiastek1 = sqrt(składnik_mianownika1);
-        pierwiastek2 = sqrt(składnik_mianownika2);
+        pierwiastek1 = sqrt(czynnik_mianownika1);
+        pierwiastek2 = sqrt(czynnik_mianownika2);
         mianownik = pierwiastek1 * pierwiastek2;
         cosDistance = liczebnik / mianownik;
         return cosDistance;
