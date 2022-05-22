@@ -77,12 +77,4 @@ public class Statistics {
         cosDistance = liczebnik / mianownik;
         return cosDistance;
     }
-
-    public static void main(String[] args) {
-        List<Integer> listEven = new LinkedList<>(List.of(23,56,1,2,4,89));
-//        System.out.println(findMedian(listEven));
-        List<Integer> listOdd = new LinkedList<>(List.of(23,56,1,4,89));
-//        System.out.println(findMedian(listOdd));
-        System.out.println(cosDistance(listOdd, listOdd));
-    }
 }
