@@ -21,5 +21,9 @@ public class Two implements Serializable {
     private double medOfintervals;
     private double q3Ofintervals;
     private int lastOccurence;
+    private boolean isLastBiggerthanMed = lastOccurence > medOfintervals;//zrób to jakoś sprytnie, żeby obliczało się jak będą dane
+    private boolean isLastBiggerthanQ3 = lastOccurence > q3Ofintervals;
     private static final long serialVersionUID = -5833841541984247747L;
+
+
 }
