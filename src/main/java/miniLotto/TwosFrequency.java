@@ -1,5 +1,7 @@
 package miniLotto;
 
+import miniLotto.models.Two;
+import miniLotto.utilities.Serializer;
 import miniLotto.utilities.Statistics;
 
 import java.io.File;
@@ -18,7 +20,7 @@ public class TwosFrequency {
             for (int j=1;j<=42;j++){
                 if(j>i){
                     try {
-                        in = new Scanner(new File("src/miniLotto/wyniki-minilotto-sortowane-parsed.csv"));
+                        in = new Scanner(new File("src/main/java/miniLotto/wyniki-minilotto-sortowane-parsed.csv"));
                         int line = 0;
                         distances = new LinkedList();
                         points = new LinkedList<>();
@@ -47,30 +49,51 @@ public class TwosFrequency {
                         System.out.println();
                         System.out.println("--------------------------------------------");
                         System.out.println(i + " | " + j);
+                        Two pair = Two.builder()
+                                .firstNumber(i)
+                                .secondNumber(j)
+                                .distances(distances)
+                                .build();
                         System.out.println(distances);
+
+                        pair.setMaxInterval(distances.stream()
+                                .mapToInt(Integer::intValue)
+                                .max()
+                                .getAsInt());
+
                         System.out.println(
-                                "największa przerwa: " +
-                                distances.stream().mapToInt(Integer::intValue).max() + "\t"
+                                "największa przerwa: " + pair.getMaxInterval() + "\t"
                         );
+
+                        pair.setMinInterval(distances.stream()
+                                .mapToInt(Integer::intValue)
+                                .min()
+                                .getAsInt());
+
                         System.out.println(
-                                "najmniejsza przerwa: " +
-                                distances.stream().mapToInt(Integer::intValue).min() + "\t"
+                                "najmniejsza przerwa: " + pair.getMinInterval() + "\t"
                         );
+
+                        pair.setAvgInterval(distances.stream()
+                                .mapToInt(Integer::intValue)
+                                .average()
+                                .getAsDouble());
+
                         System.out.println(
-                                "średnia przerwa: " +
-                                        distances.stream().mapToInt(Integer::intValue).average() + "\t"
+                                "średnia przerwa: " + pair.getAvgInterval() + "\t"
                         );
+
+                        pair.setMedOfintervals(Statistics.findMedian(distances)); //uwaga: po tej instrukcji distances jest już posortowana!!!
+                        System.out.println("Mediana: " + pair.getMedOfintervals());
+
+                        pair.setQ3Ofintervals(Statistics.findQ3(distances));
+                        System.out.println("Trzeci kwantyl: " + pair.getQ3Ofintervals()+ "\t");
+
+                        pair.setLastOccurence(line - points.getLast());
                         System.out.println(
-                                "Mediana: " + (Statistics.findMedian(distances))//uwaga: po tej instrukcji distances jest już posortowana!!!
+                                "Ostatnie wystąpienie było: " + pair.getLastOccurence() + " losowań temu." + "\t"
                         );
-                        System.out.println(
-                                "Trzeci kwantyl: " +
-                                        (Statistics.findQ3(distances)) + "\t"
-                        );
-                        System.out.println(
-                                "Ostatnie wystąpienie było: " +
-                                        (line - points.getLast()) + " losowań temu." + "\t"
-                        );
+                        Serializer.serialize(pair, "src/main/resources/Twos_serialized.ser");
                         //System.out.println(distances.stream().mapToInt(Integer::intValue).summaryStatistics());
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();

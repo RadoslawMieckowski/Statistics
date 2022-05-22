@@ -3,6 +3,7 @@ package miniLotto.models;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Setter
 @Getter
@@ -11,13 +12,14 @@ import java.io.Serializable;
 @ToString
 @Builder
 public class Two implements Serializable {
-    int firstNumber;
-    int secondNumber;
+    private int firstNumber;
+    private int secondNumber;
+    private List<Integer> distances;
     private int maxInterval;
     private int minInterval;
-    private int avgInterval;
+    private double avgInterval;
     private double medOfintervals;
     private double q3Ofintervals;
-    int lastOccurence;
+    private int lastOccurence;
     private static final long serialVersionUID = -5833841541984247747L;
 }
