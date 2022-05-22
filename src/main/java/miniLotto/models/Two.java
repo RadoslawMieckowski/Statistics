@@ -1,5 +1,13 @@
 package miniLotto.models;
 
+import lombok.*;
+
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Builder
 public class Two {
     int firstNumber;
     int secondNumber;
