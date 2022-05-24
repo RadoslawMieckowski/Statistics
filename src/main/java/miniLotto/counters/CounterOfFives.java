@@ -1,4 +1,4 @@
-package miniLotto;
+package miniLotto.counters;
 
 import java.io.File;
 import java.io.FileNotFoundException;

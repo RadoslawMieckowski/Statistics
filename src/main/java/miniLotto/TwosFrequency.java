@@ -93,6 +93,15 @@ public class TwosFrequency {
                         System.out.println(
                                 "Ostatnie wystąpienie było: " + pair.getLastOccurence() + " losowań temu." + "\t"
                         );
+
+                        pair.setMedOfintervals(pair.getMedOfintervals());
+                        System.out.println("Czy ostatnie wystąpienie jest większe od mediany wystąpień: " + "\t" +
+                                pair.isLastBiggerthanMed());
+
+                        pair.setQ3Ofintervals(pair.getQ3Ofintervals());
+                        System.out.println("Czy ostatnie wystąpienie jest większe od" +
+                                " trzeciego kwartylu wystąpień: " + pair.isLastBiggerthanQ3() + "\t");
+
                         Serializer.serialize(pair, "src/main/resources/Twos_serialized.ser");
                         //System.out.println(distances.stream().mapToInt(Integer::intValue).summaryStatistics());
                     } catch (FileNotFoundException e) {

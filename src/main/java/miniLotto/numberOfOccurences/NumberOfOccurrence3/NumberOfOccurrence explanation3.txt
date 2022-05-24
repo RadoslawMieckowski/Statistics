@@ -1,0 +1,2 @@
+liczymy, ile jest takich losowań,gdzie jakakolwiek 3 liczby powtarzają się w następnym losowaniu.
+Jest 61 na 5846 przypadków, czyli 1,04%
