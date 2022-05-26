@@ -14,8 +14,9 @@ import java.util.Scanner;
 public class TwosFrequency {
     public static void main(String[] args) {
         Scanner in;
-        LinkedList<Integer> distances = null;
-        LinkedList<Integer> points = null;
+        LinkedList<Integer> distances;
+        LinkedList<Integer> points;
+        LinkedList<Two> listToSerialize = new LinkedList<>();
         for(int i=1;i<=41;i++){
             for (int j=1;j<=42;j++){
                 if(j>i){
@@ -102,7 +103,7 @@ public class TwosFrequency {
                         System.out.println("Czy ostatnie wystąpienie jest większe od" +
                                 " trzeciego kwartylu wystąpień: " + pair.isLastBiggerthanQ3() + "\t");
 
-                        Serializer.serialize(pair, "src/main/resources/Twos_serialized.ser");
+                        listToSerialize.add(pair);
                         //System.out.println(distances.stream().mapToInt(Integer::intValue).summaryStatistics());
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -110,5 +111,6 @@ public class TwosFrequency {
                 }
             }
         }
+        Serializer.serialize(listToSerialize, "src/main/resources/Twos_serialized.ser");
     }
 }
