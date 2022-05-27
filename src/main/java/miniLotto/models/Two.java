@@ -51,6 +51,9 @@ public class Two implements Serializable {
 
     public void setLastOccurence(int lastOccurence) {
         this.lastOccurence = lastOccurence;
+        if(lastOccurence > maxInterval) {
+            maxInterval =lastOccurence;
+        }
     }
 
     private void setLastBiggerthanMed() {
