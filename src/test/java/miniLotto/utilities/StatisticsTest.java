@@ -1,6 +1,8 @@
 package miniLotto.utilities;
 
 import static org.assertj.core.api.Assertions.*;
+
+import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
@@ -44,4 +46,27 @@ class StatisticsTest {
 
         assertThat(expectedList).isEqualTo(listEven);
     }
+
+    @Test
+    void cosDistanceListsOfSameSizeTest() {
+        List<Integer> list1 = List.of(5, 0, 3, 0, 2, 0, 0, 2, 0, 0);
+        List<Integer> list2 = List.of(3, 0, 2, 0, 1, 1, 0, 1, 0, 1);
+        double expectedSimilarity = 0.94;
+
+        double actualSimiliarity = Statistics.cosDistance(list1, list2);
+
+        assertThat(actualSimiliarity).isCloseTo(expectedSimilarity, Percentage.withPercentage(0.5));
+    }
+    @Test
+    void cosDistanceListsOfDifferentSizeTest() {
+        List<Integer> list1 = List.of(5, 0, 3, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0);
+        List<Integer> list2 = List.of(3, 0, 2, 0, 1, 1, 0, 1, 0, 1);
+        double expectedSimilarity = 0.94;
+
+        double actualSimiliarity = Statistics.cosDistance(list1, list2);
+
+        assertThat(actualSimiliarity).isCloseTo(expectedSimilarity, Percentage.withPercentage(0.5));
+    }
+
 }
+
