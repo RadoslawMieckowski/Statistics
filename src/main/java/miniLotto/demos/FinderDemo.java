@@ -14,6 +14,6 @@ public class FinderDemo {
         List<Two> twosWithLastBiggerThan3QSortedByLast = Filter.filterTwosWithLastBiggerthan3Q(deserializedList);
         Sorter.sortByMaxInterval(twosWithLastBiggerThan3QSortedByLast);
         System.out.println("Długość listy: " + twosWithLastBiggerThan3QSortedByLast.size());
-        System.out.println(ListPresenter.present(twosWithLastBiggerThan3QSortedByLast));
+        System.out.println(Presenter.presentList(twosWithLastBiggerThan3QSortedByLast));
     }
 }
