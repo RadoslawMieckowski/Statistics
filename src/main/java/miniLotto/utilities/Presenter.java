@@ -11,6 +11,7 @@ public final class Presenter {
         for (T x : list) {
             stringBuilder.append(x + "\n\n");
         }
+        System.out.println(stringBuilder);
         return stringBuilder.toString();
     }
 
@@ -33,12 +34,14 @@ public final class Presenter {
                  return presentMap(map);
             }
         }
+        System.out.println(stringBuilder);
         return stringBuilder.toString();
     }
 
     public static <K, V> String presentMap(Map<K, V> map) {
         StringBuilder stringBuilder = new StringBuilder();
         map.forEach((k, v) -> stringBuilder.append(k + "\t" +  v + "\n"));
+        System.out.println(stringBuilder);
         return stringBuilder.toString();
     }
 }
