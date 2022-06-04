@@ -3,7 +3,10 @@ package miniLotto.utilities;
 import lombok.NonNull;
 import miniLotto.models.Two;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import static miniLotto.utilities.TwoComparator.*;
 
@@ -79,5 +82,12 @@ public final class Finder {
                 .min(lastOccurenceComparator)
                 .orElseThrow();
         return two;
+    }
+
+    public static <K, V> Map.Entry<K, V> findEntryWithHighestSimilarity(Map<K, V> map) {
+        Optional<Map.Entry<K, V>> maxEntry = map.entrySet()
+                .stream()
+                .max(Comparator.comparing(Map.Entry::getValue));
+        return maxEntry.get();
     }
 }
