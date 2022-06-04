@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import static miniLotto.utilities.Serializer.deserializeMap;
 import static miniLotto.utilities.Serializer.serializeMap;
@@ -27,4 +28,12 @@ class SerializerTest {
         assertThat(deserializedMap).containsEntry("Radosław", 8);
     }
 
+    @Test
+    void deserializeMapShouldReturnMapEqualToOriginalMap() {
+        final String filepath = "src/main/resources/mapOfDistances_serialized.ser";
+
+        HashMap<String, Double> deserializedMap = new HashMap<>(Serializer.deserializeMap(filepath));
+
+        assertThat(deserializedMap).hasSize(2);
+    }
 }
