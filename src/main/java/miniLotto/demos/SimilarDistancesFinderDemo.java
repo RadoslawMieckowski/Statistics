@@ -31,5 +31,6 @@ public class SimilarDistancesFinderDemo {
             }
         }
         Presenter.presentMap(mapOfDistances, "similarity", "");
+        Serializer.serializeMap(mapOfDistances, "src/main/resources/mapOfDistances_serialized.ser");
     }
 }
