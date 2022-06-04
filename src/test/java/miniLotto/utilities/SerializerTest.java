@@ -34,6 +34,6 @@ class SerializerTest {
 
         HashMap<String, Double> deserializedMap = new HashMap<>(Serializer.deserializeMap(filepath));
 
-        assertThat(deserializedMap).hasSize(2);
+        assertThat(deserializedMap).containsKey("1|2 i 3|4");
     }
 }
