@@ -84,10 +84,10 @@ public final class Finder {
         return two;
     }
 
-    public static <K, V> Map.Entry<K, V> findEntryWithHighestSimilarity(Map<K, V> map) {
-        Optional<Map.Entry<K, V>> maxEntry = map.entrySet()
-                .stream()
-                .max(Comparator.comparing(Map.Entry::getValue));
-        return maxEntry.get();
-    }
+//    public static <K, V> Map.Entry<K, V> findEntryWithHighestSimilarity(Map<K, V> map) {
+//        return   map.entrySet()
+//                .stream()
+//
+//
+//    }
 }
