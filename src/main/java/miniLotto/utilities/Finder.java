@@ -5,10 +5,11 @@ import miniLotto.models.Two;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Map;
 import java.util.Optional;
 
-import static miniLotto.utilities.TwoComparator.*;
+import static miniLotto.interfaces.TwoComparator.*;
 
 public final class Finder {
     private Finder() {}
@@ -84,10 +85,9 @@ public final class Finder {
         return two;
     }
 
-//    public static <K, V> Map.Entry<K, V> findEntryWithHighestSimilarity(Map<K, V> map) {
-//        return   map.entrySet()
-//                .stream()
-//
-//
-//    }
+    public static <K, V extends Comparable<V>> Entry<K, V> findEntryWithHighestSimilarity(Map<K, V> map) {
+        Optional<Entry<K , V>> maxEntry = map.entrySet()
+                .stream().max(Comparator.comparing(Entry::getValue));
+        return maxEntry.get();
+    }
 }

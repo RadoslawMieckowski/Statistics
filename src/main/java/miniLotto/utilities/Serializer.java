@@ -70,7 +70,7 @@ public final class Serializer {
         List<LinkedHashMap<K, V>> listOfMaps = null;
         try(FileInputStream fileInputStream = new FileInputStream(filePath);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
-            listOfMaps = (LinkedList<LinkedHashMap<K,V>>) objectInputStream.readObject();
+            listOfMaps = (List<LinkedHashMap<K,V>>) objectInputStream.readObject();
         } catch ( IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

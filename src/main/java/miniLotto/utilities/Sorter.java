@@ -5,7 +5,7 @@ import miniLotto.models.Two;
 
 import java.util.List;
 
-import static miniLotto.utilities.TwoComparator.*;
+import static miniLotto.interfaces.TwoComparator.*;
 
 public final class Sorter {
     private Sorter() {}

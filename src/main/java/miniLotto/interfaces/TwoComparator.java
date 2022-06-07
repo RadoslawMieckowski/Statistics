@@ -1,4 +1,4 @@
-package miniLotto.utilities;
+package miniLotto.interfaces;
 
 import miniLotto.models.Two;
 
