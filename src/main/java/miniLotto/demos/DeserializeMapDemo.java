@@ -16,20 +16,19 @@ public class DeserializeMapDemo {
         List<String> keys = new ArrayList<>(deserializedMap.keySet());
         long elementsToSkip = 10_000;
         long limitOfElements = 10_000;
-        List<LinkedHashMap<String, Double>> listOfMaps= new ArrayList<>(keys.size());
-        String currentKey;
+        List<LinkedHashMap<String, Double>> listOfMaps = new ArrayList<>(keys.size());
         LinkedHashMap<String, Double> subMap1 = new LinkedHashMap<>(
-                keys.stream().limit(elementsToSkip)
+                keys.stream().limit(limitOfElements)
                 .collect(Collectors.toMap(
                         Function.identity(), deserializedMap::remove
                         )
                 )
         );
-        currentKey = keys.get(subMap1.size() - 1);
         int i = 0;
         listOfMaps.add(subMap1);
+        System.out.println("Mapa nr 1 dodana do listOfMaps");
         i++;
-        while (!currentKey.equals(keys.get(keys.size() - 1))) {
+        while (elementsToSkip < keys.size()) {
             listOfMaps.add(
                     new LinkedHashMap<>(
                             keys.stream().skip(elementsToSkip)
@@ -42,14 +41,11 @@ public class DeserializeMapDemo {
             );
             i++;
             elementsToSkip += 10_000;
-            currentKey += keys.get(listOfMaps.get(listOfMaps.size() - 1).size());
-            System.out.println("Mapa nr " + i + "dodana do listOfMaps");
-        }//na ten moment stworzona jest lista map
+            System.out.println("Mapa nr " + i + " dodana do listOfMaps");
+        }
         Serializer.serializeListOfMaps(listOfMaps, "src/main/resources/list_of_mapped_distances.ser");
-//        System.out.println("Size of listOfMaps: " + listOfMaps.size());
-//        System.out.println(subMap1);
-//        presentMap(deserializedMap, "similarity", "numbers");
 //        deserializedMap.forEach((k, v) -> System.out.println(k + "\t" + v));// drukuje tylko ok 32 000 rekordów.. ale zawiera wszystkie wejścia
+        //strumienie mają więc ograniczenia
     }
 
 
