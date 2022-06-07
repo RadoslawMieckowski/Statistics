@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class Serializer {
+public final class Serializer {
     private Serializer() {}
 
     public static <T extends Serializable> void serialize(@NonNull T object, @NonNull String filePath) {

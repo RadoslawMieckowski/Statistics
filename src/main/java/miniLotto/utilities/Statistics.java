@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import static java.lang.Math.*;
 
-public class Statistics {
+public final class Statistics {
     public static double findMedian(List<Integer> list) {
         //można też tak: List<Integer> copyList = new LinkedList<>(list);
         List<Integer> copyList = list.stream().collect(Collectors.toList());

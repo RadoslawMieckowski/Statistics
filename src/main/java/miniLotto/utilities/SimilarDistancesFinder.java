@@ -1,4 +1,4 @@
 package miniLotto.utilities;
 
-public class SimilarDistancesFinder {
+public final class SimilarDistancesFinder {
 }
