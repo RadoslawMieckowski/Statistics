@@ -3,6 +3,9 @@ package miniLotto.utilities;
 import lombok.NonNull;
 
 import java.io.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class Serializer {
@@ -50,5 +53,27 @@ public class Serializer {
             e.printStackTrace();
         }
         return map;
+    }
+
+    public static <K,V> void serializeListOfMaps(List<LinkedHashMap<K, V>> listOfMaps, String filePath) {
+        try(FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+            objectOutputStream.writeObject(listOfMaps);
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static <K, V> List<LinkedHashMap<K, V>> deserializeListOfMaps(@NonNull String filePath) {
+        List<LinkedHashMap<K, V>> listOfMaps = null;
+        try(FileInputStream fileInputStream = new FileInputStream(filePath);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+            listOfMaps = (LinkedList<LinkedHashMap<K,V>>) objectInputStream.readObject();
+        } catch ( IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return listOfMaps;
     }
 }
