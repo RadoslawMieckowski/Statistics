@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 import static miniLotto.utilities.Presenter.presentMap;
 //dzieli dużą mapę na listę małych map do serializacji do wskazanego pliku
-public class DeserializeMapDemo {
+public class DeserializeMapDividerToSmallerMapsDemo {
     public static void main(String[] args) {
         final String filepath = "src/main/resources/mapOfDistances_serialized.ser";
         LinkedHashMap<String, Double> deserializedMap = new LinkedHashMap<>(Serializer.deserializeMap(filepath));
