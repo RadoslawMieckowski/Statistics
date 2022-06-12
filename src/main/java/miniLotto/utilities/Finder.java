@@ -3,11 +3,10 @@ package miniLotto.utilities;
 import lombok.NonNull;
 import miniLotto.models.Two;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Map;
-import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import static miniLotto.interfaces.TwoComparator.*;
 
@@ -89,5 +88,47 @@ public final class Finder {
         Optional<Entry<K , V>> maxEntry = map.entrySet()
                 .stream().max(Comparator.comparing(Entry::getValue));
         return maxEntry.get();
+    }
+
+    public static <K extends String, V> List<Entry<K, V>> findMostSimilarEntryWithGivenTwo(
+            @NonNull Two two, @NonNull List<LinkedHashMap<K , V>> list, int elementsLimit) {
+        List<Map<K, V>> copyList = list.stream().collect(Collectors.toList());
+        List<Map.Entry<K, V>> entryList = Finder.
+                filterListOfMapsByFirstAndSecondNumber(
+                        String.valueOf(two.getFirstNumber()),
+                        String.valueOf(two.getSecondNumber()),
+                        copyList);
+        double maxValue = (double) entryList.get(0).getValue();
+        List<Entry<K, V>> returnList = new LinkedList<>();
+        for (int i = 1; i <= elementsLimit; i++) {
+            for (Entry<K, V> entry : entryList) {
+                if ((double) entry.getValue() > maxValue) {
+                    returnList.add(entry);
+                    entryList.remove(entry);
+                }
+            }
+       }
+        return returnList;
+    }
+
+    public static <K extends String, V> List<Entry<K, V>> filterListOfMapsByFirstAndSecondNumber(
+            String firstNumber,
+            String secondNumber,
+            List<Map<K, V>> list) {
+        List<Map<K, V>> copyList = list.stream().collect(Collectors.toList());
+        List<Entry<K, V>> returnList = new LinkedList<>();
+        for (Map map : copyList) {
+            Set<Entry<K, V>> entrySet = map.entrySet();
+            for (Entry<K, V> entry : entrySet) {
+                if (entry.getKey().startsWith(firstNumber + "|" + secondNumber) ||
+                        entry.getKey().startsWith(secondNumber + "|" + firstNumber) ||
+                        entry.getKey().endsWith(firstNumber + "|" + secondNumber) ||
+                        entry.getKey().endsWith(secondNumber + "|" + firstNumber)
+                ) {
+                    returnList.add(entry);
+                }
+            }
+        }
+        return returnList;
     }
 }
