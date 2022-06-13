@@ -78,6 +78,11 @@ public class Two implements Serializable {
         setLastBiggerthanQ3();
     }
 
+    public Two(int firstNumber, int secondNumber) {
+        this.firstNumber = firstNumber;
+        this.secondNumber = secondNumber;
+    }
+
     @Override
     public String toString() {
         return firstNumber + " | "+ secondNumber + "\n"+

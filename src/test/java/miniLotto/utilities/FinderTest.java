@@ -1,11 +1,14 @@
 package miniLotto.utilities;
 
-import org.assertj.core.api.Assertions;
+import miniLotto.models.Two;
+import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnit;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 class FinderTest {
 
@@ -26,13 +29,13 @@ class FinderTest {
         List<Map.Entry<String, Double>> entryList = Finder.
                 filterListOfMapsByFirstAndSecondNumber("1", "2", list);
 
-        Assertions.assertThat(entryList).hasSize(3);
-        Assertions.assertThat(entryList.get(0).getKey()).isEqualTo("1|2 i 2|3");
-        Assertions.assertThat(entryList.get(0).getValue()).isEqualTo(0.2);
-        Assertions.assertThat(entryList.get(1).getKey()).isEqualTo("1|2 i 3|4");
-        Assertions.assertThat(entryList.get(1).getValue()).isEqualTo(0.1);
-        Assertions.assertThat(entryList.get(2).getKey()).isEqualTo("1|2 i 5|6");
-        Assertions.assertThat(entryList.get(2).getValue()).isEqualTo(0.2);
+        assertThat(entryList).hasSize(3);
+        assertThat(entryList.get(0).getKey()).isEqualTo("1|2 i 2|3");
+        assertThat(entryList.get(0).getValue()).isEqualTo(0.2);
+        assertThat(entryList.get(1).getKey()).isEqualTo("1|2 i 3|4");
+        assertThat(entryList.get(1).getValue()).isEqualTo(0.1);
+        assertThat(entryList.get(2).getKey()).isEqualTo("1|2 i 5|6");
+        assertThat(entryList.get(2).getValue()).isEqualTo(0.2);
     }
 
     @Test
@@ -52,13 +55,13 @@ class FinderTest {
         List<Map.Entry<String, Double>> entryList = Finder.
                 filterListOfMapsByFirstAndSecondNumber("1", "2", list);
 
-        Assertions.assertThat(entryList).hasSize(3);
-        Assertions.assertThat(entryList.get(0).getKey()).isEqualTo("2|3 i 1|2");
-        Assertions.assertThat(entryList.get(0).getValue()).isEqualTo(0.2);
-        Assertions.assertThat(entryList.get(1).getKey()).isEqualTo("1|2 i 3|4");
-        Assertions.assertThat(entryList.get(1).getValue()).isEqualTo(0.1);
-        Assertions.assertThat(entryList.get(2).getKey()).isEqualTo("1|2 i 5|6");
-        Assertions.assertThat(entryList.get(2).getValue()).isEqualTo(0.2);
+        assertThat(entryList).hasSize(3);
+        assertThat(entryList.get(0).getKey()).isEqualTo("2|3 i 1|2");
+        assertThat(entryList.get(0).getValue()).isEqualTo(0.2);
+        assertThat(entryList.get(1).getKey()).isEqualTo("1|2 i 3|4");
+        assertThat(entryList.get(1).getValue()).isEqualTo(0.1);
+        assertThat(entryList.get(2).getKey()).isEqualTo("1|2 i 5|6");
+        assertThat(entryList.get(2).getValue()).isEqualTo(0.2);
     }
 
 
@@ -79,13 +82,13 @@ class FinderTest {
         List<Map.Entry<String, Double>> entryList = Finder.
                 filterListOfMapsByFirstAndSecondNumber("1", "2", list);
 
-        Assertions.assertThat(entryList).hasSize(3);
-        Assertions.assertThat(entryList.get(0).getKey()).isEqualTo("2|1 i 2|3");
-        Assertions.assertThat(entryList.get(0).getValue()).isEqualTo(0.2);
-        Assertions.assertThat(entryList.get(1).getKey()).isEqualTo("1|2 i 3|4");
-        Assertions.assertThat(entryList.get(1).getValue()).isEqualTo(0.1);
-        Assertions.assertThat(entryList.get(2).getKey()).isEqualTo("1|2 i 5|6");
-        Assertions.assertThat(entryList.get(2).getValue()).isEqualTo(0.2);
+        assertThat(entryList).hasSize(3);
+        assertThat(entryList.get(0).getKey()).isEqualTo("2|1 i 2|3");
+        assertThat(entryList.get(0).getValue()).isEqualTo(0.2);
+        assertThat(entryList.get(1).getKey()).isEqualTo("1|2 i 3|4");
+        assertThat(entryList.get(1).getValue()).isEqualTo(0.1);
+        assertThat(entryList.get(2).getKey()).isEqualTo("1|2 i 5|6");
+        assertThat(entryList.get(2).getValue()).isEqualTo(0.2);
     }
 
     @Test
@@ -103,11 +106,28 @@ class FinderTest {
             entryList.add(entry);
         }
 
-//        Mockito.when(Finder.filterListOfMapsByFirstAndSecondNumber(
-//                Mockito.anyString(),
-//                Mockito.anyString(),
-//                Mockito.anyList()))
-//                .thenReturn(entryList);
+        Two two = new Two(1,2);
+
+        List spyList = Mockito.spy(entryList);
+        Mockito.when(Finder.filterListOfMapsByFirstAndSecondNumber(
+                Mockito.anyString(),
+                Mockito.anyString(),
+                Mockito.anyList()))
+        .thenReturn(spyList);
+
+        List<Map.Entry<String, Double>> results = Finder.findMostSimilarEntryWithGivenTwo(
+                two,
+                new LinkedList<>(),
+                3
+        );
+
+        assertThat(results).hasSize(3);
+        assertThat(results.get(0).getValue()).isEqualTo(0.8);
+        assertThat(results.get(0).getKey()).isEqualTo("1|2 i 6|7");
+        assertThat(results.get(1).getValue()).isEqualTo(0.7);
+        assertThat(results.get(1).getKey()).isEqualTo("1|2 i 5|6");
+        assertThat(results.get(2).getValue()).isEqualTo(0.3);
+        assertThat(results.get(2).getKey()).isEqualTo("1|2 i 3|4");
     }
 }
 
