@@ -3,6 +3,7 @@ package miniLotto.utilities;
 import miniLotto.models.Two;
 import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
 import java.util.LinkedHashMap;
@@ -97,7 +98,6 @@ class FinderTest {
         Map<String, Double> map = new LinkedHashMap<>();
         map.put("1|2 i 2|3", 0.2);
         map.put("1|2 i 3|4", 0.1);
-        map.put("1|2 i 3|4", 0.3);
         map.put("1|2 i 4|5", 0.17);
         map.put("1|2 i 5|6", 0.7);
         map.put("1|2 i 6|7", 0.8);
@@ -106,27 +106,34 @@ class FinderTest {
             entryList.add(entry);
         }
 
+        assertThat(map).hasSize(5);
+
         Two two = new Two(1,2);
 
+        List<Map.Entry<String, Double>> results;
+
         List spyList = Mockito.spy(entryList);
-        Mockito.when(Finder.filterListOfMapsByFirstAndSecondNumber(
-                Mockito.anyString(),
-                Mockito.anyString(),
-                Mockito.anyList()))
-        .thenReturn(spyList);
+        try(MockedStatic<Finder> finderMockedStatic = Mockito.mockStatic(Finder.class)) {
+            finderMockedStatic.when(() -> Finder.filterListOfMapsByFirstAndSecondNumber(
+                    Mockito.anyString(),
+                    Mockito.anyString(),
+                    Mockito.anyList()))
+                    .thenReturn(spyList);
 
-        List<Map.Entry<String, Double>> results = Finder.findMostSimilarEntryWithGivenTwo(
-                two,
-                new LinkedList<>(),
-                3
-        );
+            results = Finder.findMostSimilarEntryWithGivenTwo(
+                    two,
+                    new LinkedList<>(),
+                    3
+            );
 
+
+        }
         assertThat(results).hasSize(3);
         assertThat(results.get(0).getValue()).isEqualTo(0.8);
         assertThat(results.get(0).getKey()).isEqualTo("1|2 i 6|7");
         assertThat(results.get(1).getValue()).isEqualTo(0.7);
         assertThat(results.get(1).getKey()).isEqualTo("1|2 i 5|6");
-        assertThat(results.get(2).getValue()).isEqualTo(0.3);
+        assertThat(results.get(2).getValue()).isEqualTo(0.2);
         assertThat(results.get(2).getKey()).isEqualTo("1|2 i 3|4");
     }
 }

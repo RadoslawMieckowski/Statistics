@@ -90,7 +90,7 @@ public final class Finder {
         return maxEntry.get();
     }
 
-    public static <K extends String, V> List<Entry<K, V>> findMostSimilarEntryWithGivenTwo(
+    public static <K extends String, V extends Comparable > List<Entry<K, V>> findMostSimilarEntryWithGivenTwo(
             @NonNull Two two, @NonNull List<LinkedHashMap<K , V>> list, int elementsLimit) {
         List<Map<K, V>> copyList = list.stream().collect(Collectors.toList());
         List<Map.Entry<K, V>> entryList = Finder.
@@ -98,15 +98,11 @@ public final class Finder {
                         String.valueOf(two.getFirstNumber()),
                         String.valueOf(two.getSecondNumber()),
                         copyList);
-        double maxValue = (double) entryList.get(0).getValue();
         List<Entry<K, V>> returnList = new LinkedList<>();
         for (int i = 1; i <= elementsLimit; i++) {
-            for (Entry<K, V> entry : entryList) {
-                if ((double) entry.getValue() > maxValue) {
-                    returnList.add(entry);
-                    entryList.remove(entry);
-                }
-            }
+                Entry<K, V> maxEntry = (Entry<K, V>)entryList.stream().max(Comparator.comparing(Entry::getValue)).get();
+                    returnList.add(maxEntry);
+                    entryList.remove(maxEntry);
        }
         return returnList;
     }
