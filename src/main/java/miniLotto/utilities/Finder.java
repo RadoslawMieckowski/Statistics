@@ -90,24 +90,20 @@ public final class Finder {
         return maxEntry.get();
     }
 
-    public static <K extends String, V extends Comparable > List<Entry<K, V>> findMostSimilarEntryWithGivenTwo(
-            @NonNull Two two, @NonNull List<LinkedHashMap<K , V>> list, int elementsLimit) {
-        List<Map<K, V>> copyList = list.stream().collect(Collectors.toList());
-        List<Map.Entry<K, V>> entryList = Finder.
-                filterListOfMapsByFirstAndSecondNumber(
-                        String.valueOf(two.getFirstNumber()),
-                        String.valueOf(two.getSecondNumber()),
-                        copyList);
-        List<Entry<K, V>> returnList = new LinkedList<>();
+    public static <K extends String, V extends Comparable > List<Entry<K, V>> findMostSimilarEntriesWithGivenTwo(
+            @NonNull List<Map.Entry<K , V>> entryList, int elementsLimit) throws Throwable{
+        List<Map.Entry<K, V>> copyList = entryList.stream().collect(Collectors.toList());
+        List<Map.Entry<K, V>> returnList = new LinkedList<>();
         for (int i = 1; i <= elementsLimit; i++) {
-                Entry<K, V> maxEntry = (Entry<K, V>)entryList.stream().max(Comparator.comparing(Entry::getValue)).get();
+                Entry<K, V> maxEntry = (Entry<K, V>) copyList.stream().max(Comparator.comparing(Entry::getValue))
+                        .orElseThrow(NoSuchElementException::new);
                     returnList.add(maxEntry);
-                    entryList.remove(maxEntry);
+                    copyList.remove(maxEntry);
        }
         return returnList;
     }
 
-    public static <K extends String, V> List<Entry<K, V>> filterListOfMapsByFirstAndSecondNumber(
+    public static <K extends String, V> List<Map.Entry<K, V>> filterListOfMapsByFirstAndSecondNumber(
             String firstNumber,
             String secondNumber,
             List<Map<K, V>> list) {

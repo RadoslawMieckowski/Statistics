@@ -19,5 +19,9 @@ public class FinderDemo {
         System.out.println("minimalna mediana\n" + twoWithMinMedian + "\n");
         Two twoWithMin3Q = Finder.findTwoWithMinQ3Ofintervals(deserializedList);
         System.out.println("minimalny trzeci kwartyl\n" + twoWithMin3Q);
+        Finder.filterListOfMapsByFirstAndSecondNumber(
+                twoWithMin3Q.getFirstNumber(),
+                twoWithMin3Q.getSecondNumber(),
+                )
     }
 }
