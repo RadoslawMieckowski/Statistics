@@ -66,11 +66,11 @@ public final class Serializer {
         }
     }
 
-    public static <K, V> List<LinkedHashMap<K, V>> deserializeListOfMaps(@NonNull String filePath) {
-        List<LinkedHashMap<K, V>> listOfMaps = null;
+    public static <K, V> List<Map<K, V>> deserializeListOfMaps(@NonNull String filePath) {
+        List<Map<K, V>> listOfMaps = null;
         try(FileInputStream fileInputStream = new FileInputStream(filePath);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
-            listOfMaps = (List<LinkedHashMap<K,V>>) objectInputStream.readObject();
+            listOfMaps = (List<Map<K,V>>) objectInputStream.readObject();
         } catch ( IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

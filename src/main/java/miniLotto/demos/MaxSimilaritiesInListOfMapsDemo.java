@@ -9,10 +9,10 @@ import java.util.*;
 public class MaxSimilaritiesInListOfMapsDemo {
     public static void main(String[] args) {
         final String path = "src/main/resources/list_of_mapped_distances.ser";
-        List<LinkedHashMap<String, Double>> deserializedListOfMaps = Serializer.deserializeListOfMaps(path);
+        List<Map<String, Double>> deserializedListOfMaps = Serializer.deserializeListOfMaps(path);
         int size = deserializedListOfMaps.size();
         HashMap<String, Double> mapOfMaxSimilarities = new HashMap<>(size);
-        for (LinkedHashMap<String, Double> map : deserializedListOfMaps) {
+        for (Map<String, Double> map : deserializedListOfMaps) {
             Map.Entry maxEntry = Finder.findEntryWithHighestSimilarity(map);
             mapOfMaxSimilarities.put(
                     (String) maxEntry.getKey(),

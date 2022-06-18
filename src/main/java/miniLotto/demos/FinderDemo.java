@@ -3,7 +3,9 @@ package miniLotto.demos;
 import miniLotto.models.Two;
 import miniLotto.utilities.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FinderDemo {
     public static void main(String[] args) {
@@ -15,13 +17,18 @@ public class FinderDemo {
 //        Sorter.sortByMaxInterval(twosWithLastBiggerThan3QSortedByLast);
 //        System.out.println("Długość listy: " + twosWithLastBiggerThan3QSortedByLast.size());
 //        System.out.println(Presenter.presentList(twosWithLastBiggerThan3QSortedByLast));
+
+        //dla dwójki o najmniejszej 3q szukamy najbardziej podobnej dwójki
         Two twoWithMinMedian = Finder.findTwoWithMinMedOfintervals(deserializedList);
         System.out.println("minimalna mediana\n" + twoWithMinMedian + "\n");
         Two twoWithMin3Q = Finder.findTwoWithMinQ3Ofintervals(deserializedList);
         System.out.println("minimalny trzeci kwartyl\n" + twoWithMin3Q);
-        Finder.filterListOfMapsByFirstAndSecondNumber(
-                twoWithMin3Q.getFirstNumber(),
-                twoWithMin3Q.getSecondNumber(),
-                )
+        List<Map<String, Double>> listOfSimilarities = Serializer.deserializeListOfMaps(
+                "src/main/resources/list_of_mapped_distances.ser");
+        List<Map.Entry<String, Double>> filteredMap = Finder.filterListOfMapsByFirstAndSecondNumber(
+                String.valueOf(twoWithMin3Q.getFirstNumber()),
+                String.valueOf(twoWithMin3Q.getSecondNumber()),
+                listOfSimilarities
+                );
     }
 }
