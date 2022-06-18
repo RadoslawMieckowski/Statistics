@@ -112,7 +112,7 @@ public final class Finder {
         for (Map map : copyList) {
             Set<Entry<K, V>> entrySet = map.entrySet();
             for (Entry<K, V> entry : entrySet) {
-                if (entry.getKey().startsWith(firstNumber + "|" + secondNumber) ||
+                if (entry.getKey().startsWith(firstNumber + "|" + secondNumber) ||//popraw to, bo w finderDemo nie ma dobrych wyników!
                         entry.getKey().startsWith(secondNumber + "|" + firstNumber) ||
                         entry.getKey().endsWith(firstNumber + "|" + secondNumber) ||
                         entry.getKey().endsWith(secondNumber + "|" + firstNumber)
