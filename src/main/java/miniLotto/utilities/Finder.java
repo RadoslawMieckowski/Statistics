@@ -5,7 +5,8 @@ import miniLotto.models.Two;
 
 import java.util.*;
 import java.util.Map.Entry;
-import java.util.stream.Collector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static miniLotto.interfaces.TwoComparator.*;
@@ -109,14 +110,17 @@ public final class Finder {
             List<Map<K, V>> list) {
         List<Map<K, V>> copyList = list.stream().collect(Collectors.toList());
         List<Entry<K, V>> returnList = new LinkedList<>();
+        Pattern searched = Pattern.compile(
+                "(" + firstNumber + "\\|" + secondNumber + " i [1-9][0-9]?\\|[1-9][0-9]?)|("
+                        + secondNumber + "\\|" + firstNumber + " i [1-9][0-9]?\\|[1-9][0-9]?)|([1-9][0-9]?\\|[1-9][0-9]? i "
+                        + firstNumber + "\\|" + secondNumber +")|([1-9][0-9]?\\|[1-9][0-9]? i "
+                        + secondNumber + "\\|" + firstNumber +")"
+        );
         for (Map map : copyList) {
             Set<Entry<K, V>> entrySet = map.entrySet();
             for (Entry<K, V> entry : entrySet) {
-                if (entry.getKey().startsWith(firstNumber + "|" + secondNumber) ||//popraw to, bo w finderDemo nie ma dobrych wyników!
-                        entry.getKey().startsWith(secondNumber + "|" + firstNumber) ||
-                        entry.getKey().endsWith(firstNumber + "|" + secondNumber) ||
-                        entry.getKey().endsWith(secondNumber + "|" + firstNumber)
-                ) {
+                Matcher text = searched.matcher(entry.getKey());
+                if (text.matches()) {
                     returnList.add(entry);
                 }
             }
