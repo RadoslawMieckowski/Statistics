@@ -91,7 +91,7 @@ public final class Finder {
         return maxEntry.get();
     }
 
-    public static <K extends String, V extends Comparable > List<Entry<K, V>> findMostSimilarEntriesWithGivenTwo(
+    public static <K extends String, V extends Comparable> List<Entry<K, V>> findMostSimilarEntriesWithGivenTwo(
             @NonNull List<Map.Entry<K , V>> entryList, int elementsLimit) throws Throwable{
         List<Map.Entry<K, V>> copyList = entryList.stream().collect(Collectors.toList());
         List<Map.Entry<K, V>> returnList = new LinkedList<>();
@@ -104,6 +104,17 @@ public final class Finder {
         return returnList;
     }
 
+    /**
+     *
+     * @param firstNumber
+     * @param secondNumber
+     * @param list
+     * @param <K>
+     * @param <V>
+     * @return
+     * filtruje listę map dwójek po kluczach zawierających firstNumber i secondNumber. zwraca listę
+     * entriesów, które spełniają warunek.
+     */
     public static <K extends String, V> List<Map.Entry<K, V>> filterListOfMapsByFirstAndSecondNumber(
             String firstNumber,
             String secondNumber,
