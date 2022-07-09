@@ -9,12 +9,12 @@ import java.util.Scanner;
 
 public class TestPrintSets {
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner file = new Scanner(new File("src/miniLotto/czwórki od dwóch wystąpień.txt"));
+        Scanner file = new Scanner(new File("src/main/java/miniLotto/czwórki od dwóch wystąpień.txt"));
        // PrintWriter out=new PrintWriter("src/CounterOfNumbers/WszystkieDaneDoWykresu.txt");
         while (file.hasNextLine()) {
             int rowCounter = 0;
             String searchedTableString[]=file.nextLine().split("\t");
-            Scanner file2 = new Scanner(new File("src/miniLotto/wyniki-minilotto-sortowane-parsed.csv"));
+            Scanner file2 = new Scanner(new File("src/main/java/miniLotto/wyniki-minilotto-sortowane-parsed.csv"));
             while (file2.hasNextLine()) {
                 rowCounter++;
                 List<String> list = new ArrayList<>(5);
