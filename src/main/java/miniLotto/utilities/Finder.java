@@ -141,4 +141,30 @@ public final class Finder {
         }
         return returnList;//jak nie znajdzie, to zwróci pustą listę
     }
+
+    public static <K extends String, V> List<Map.Entry<K, V>> filterListOfMapsByFirstAndSecondNumber(
+            String firstNumber,
+            String secondNumber,
+            List<List<Map<K, V>>> listOfList,
+            List<Entry<K, V>> returnList// sztuczka, żeby kolejne wywołanie tej metody działało na zwracanej liście
+    ) {
+        Pattern searched = Pattern.compile(
+                "(" + firstNumber + "\\|" + secondNumber + " i [1-9][0-9]?\\|[1-9][0-9]?)|("
+                        + secondNumber + "\\|" + firstNumber + " i [1-9][0-9]?\\|[1-9][0-9]?)|([1-9][0-9]?\\|[1-9][0-9]? i "
+                        + firstNumber + "\\|" + secondNumber +")|([1-9][0-9]?\\|[1-9][0-9]? i "
+                        + secondNumber + "\\|" + firstNumber +")"
+        );
+        for (List <Map<K, V>> list : listOfList) { //zawsze znajdzie to czego szuka
+            for (Map map : list) {
+                Set<Entry<K, V>> entrySet = map.entrySet();
+                for (Entry<K, V> entry : entrySet) {
+                    Matcher text = searched.matcher(entry.getKey());
+                    if (text.matches()) {
+                        returnList.add(entry);
+                    }
+                }
+            }
+        }
+        return returnList;
+    }
 }
