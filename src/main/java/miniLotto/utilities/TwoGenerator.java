@@ -1,7 +1,5 @@
 package miniLotto.utilities;
 
-import miniLotto.models.Two;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -30,21 +28,23 @@ public final class TwoGenerator {
      * generuje listę list dwójek. Dwójki są najbardziej podobne do wszystkich dwójek, które występują w
      * danym zestawie. Określasz, ile ma znaleźć najbardziej podobnych dwójek dla każdej dwójki w kombinacji
      */
-    public static <K extends String, V extends Comparable> List<List<Map.Entry<K, V>>> generateListOfTwos(int[] numbers, List<Map<K, V>> mapList, int limitOfEach) throws Throwable {
-        List<List<Map.Entry<K, V>>> listOfList = new LinkedList<>();
+    public static <K extends String, V extends Comparable> List<List<Map.Entry<K, V>>> generateListOfTwos(int[] numbers, List<List<Map<K, V>>> mapList, int limitOfEach) throws Throwable {
+        List<Map.Entry<K, V>> listOfEntries = new LinkedList<>();
+        List<List<Map.Entry<K, V>>> listOfLists = new LinkedList<>();
 
             for (int i = 0; i < numbers.length; i++) {
                 for (int j = i + 1; j < numbers.length; j++) {
                     List<Map.Entry<K, V>> listOfFilteredMaps = Finder.filterListOfMapsByFirstAndSecondNumber(
                             String.valueOf(i),
                             String.valueOf(j),
-                            mapList
+                            mapList,
+                            listOfEntries
                     );
                     List<Map.Entry<K, V>> listOfFiveMostSimilarEntries =
                             Finder.findMostSimilarEntriesWithGivenTwo(listOfFilteredMaps, limitOfEach);
-                    listOfList.add(listOfFiveMostSimilarEntries);
+                    listOfLists.add(listOfFiveMostSimilarEntries);
                 }
             }
-        return listOfList;
+        return listOfLists;
     }
 }

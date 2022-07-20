@@ -18,15 +18,11 @@ public class TwoGenerotorDemo {
 //        Presenter.presentList(listOfSimilarities);
         List<List<Map<String, Double>>> listListOfTwos = ListFactory.toListOfListOfMaps(listOfSimilarities, 1_000);
 
-
-        for (List<Map<String, Double>> list : listListOfTwos) {
-            //tu sprawdzaj, czy lista zawiera daną dwójkę, może zrób metodę, która by się tym zajmowała
-            //jak nie zawiera, to przejdź do następnej listy
             List<List<Map.Entry<String, Double>>> suggestedInNextDraws = TwoGenerator.generateListOfTwos(
-                    new int[]{13, 16, 26, 31}, list, 1
+                    new int[]{13, 16, 26, 31}, listListOfTwos, 1
             );
-        }
 
-        //Presenter.presentList(suggestedInNextDraws);
+        Presenter.presentList(suggestedInNextDraws);
     }
 }
+
