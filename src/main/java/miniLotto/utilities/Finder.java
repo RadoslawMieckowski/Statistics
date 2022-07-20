@@ -92,12 +92,15 @@ public final class Finder {
     }
 
     public static <K extends String, V extends Comparable> List<Entry<K, V>> findMostSimilarEntriesWithGivenTwo(
-            @NonNull List<Map.Entry<K , V>> entryList, int elementsLimit) throws Throwable{
+            @NonNull List<Map.Entry<K , V>> entryList, int elementsLimit) throws Throwable {
+        if (entryList.isEmpty()) {
+            throw new IllegalArgumentException("entry list should not be empty!");
+        }
         List<Map.Entry<K, V>> copyList = entryList.stream().collect(Collectors.toList());
         List<Map.Entry<K, V>> returnList = new LinkedList<>();
         for (int i = 1; i <= elementsLimit; i++) {
                 Entry<K, V> maxEntry = (Entry<K, V>) copyList.stream().max(Comparator.comparing(Entry::getValue))
-                        .orElseThrow(NoSuchElementException::new);
+                        .orElseThrow(NoSuchElementException::new);//może pozbyć się jakoś wyjątku, szukać tylko w mapach, które mają odpowiednie klucze
                     returnList.add(maxEntry);
                     copyList.remove(maxEntry);
        }
@@ -136,6 +139,6 @@ public final class Finder {
                 }
             }
         }
-        return returnList;
+        return returnList;//jak nie znajdzie, to zwróci pustą listę
     }
 }

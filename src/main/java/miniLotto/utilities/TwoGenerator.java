@@ -32,6 +32,7 @@ public final class TwoGenerator {
      */
     public static <K extends String, V extends Comparable> List<List<Map.Entry<K, V>>> generateListOfTwos(int[] numbers, List<Map<K, V>> mapList, int limitOfEach) throws Throwable {
         List<List<Map.Entry<K, V>>> listOfList = new LinkedList<>();
+
             for (int i = 0; i < numbers.length; i++) {
                 for (int j = i + 1; j < numbers.length; j++) {
                     List<Map.Entry<K, V>> listOfFilteredMaps = Finder.filterListOfMapsByFirstAndSecondNumber(

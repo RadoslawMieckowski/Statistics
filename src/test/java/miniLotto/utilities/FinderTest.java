@@ -127,7 +127,7 @@ Presenter.presentList(list);
     }
 
     @Test
-    void findMostSimilarEntryWithGivenTwoTest() throws Throwable{
+    void findMostSimilarEntryWithGivenTwoTest() throws Throwable {
         List<Map.Entry<String, Double>> entryList = new LinkedList<>();
         Map<String, Double> map = new LinkedHashMap<>();
         map.put("1|2 i 2|3", 0.2);
