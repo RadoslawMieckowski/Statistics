@@ -154,6 +154,7 @@ public final class Finder {
                         + firstNumber + "\\|" + secondNumber +")|([1-9][0-9]?\\|[1-9][0-9]? i "
                         + secondNumber + "\\|" + firstNumber +")"
         );
+        entry_found:
         for (List <Map<K, V>> list : listOfList) { //zawsze znajdzie to czego szuka
             for (Map map : list) {
                 Set<Entry<K, V>> entrySet = map.entrySet();
@@ -161,6 +162,7 @@ public final class Finder {
                     Matcher text = searched.matcher(entry.getKey());
                     if (text.matches()) {
                         returnList.add(entry);
+                        break entry_found;
                     }
                 }
             }

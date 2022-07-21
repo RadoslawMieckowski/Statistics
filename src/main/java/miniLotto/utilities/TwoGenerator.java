@@ -31,12 +31,13 @@ public final class TwoGenerator {
     public static <K extends String, V extends Comparable> List<List<Map.Entry<K, V>>> generateListOfTwos(int[] numbers, List<List<Map<K, V>>> mapList, int limitOfEach) throws Throwable {
         List<Map.Entry<K, V>> listOfEntries = new LinkedList<>();
         List<List<Map.Entry<K, V>>> listOfLists = new LinkedList<>();
-
+        List<Map.Entry<K, V>> listOfFilteredMaps;
             for (int i = 0; i < numbers.length; i++) {
                 for (int j = i + 1; j < numbers.length; j++) {
-                    List<Map.Entry<K, V>> listOfFilteredMaps = Finder.filterListOfMapsByFirstAndSecondNumber(
-                            String.valueOf(i),
-                            String.valueOf(j),
+                    System.out.println("szukam dla " + numbers[i] + " i " + numbers[j]);
+                         listOfFilteredMaps = Finder.filterListOfMapsByFirstAndSecondNumber(
+                            String.valueOf(numbers[i]),
+                            String.valueOf(numbers[j]),
                             mapList,
                             listOfEntries
                     );
