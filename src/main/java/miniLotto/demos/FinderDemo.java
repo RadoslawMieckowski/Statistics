@@ -4,7 +4,6 @@ import lombok.SneakyThrows;
 import miniLotto.models.Two;
 import miniLotto.utilities.*;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +26,7 @@ public class FinderDemo {
         System.out.println("minimalny trzeci kwartyl\n" + twoWithMin3Q);
         List<Map<String, Double>> listOfSimilarities = Serializer.deserializeListOfMaps(
                 "src/main/resources/list_of_mapped_distances.ser");
-        List<Map.Entry<String, Double>> listOfFilteredMaps = Finder.filterListOfMapsByFirstAndSecondNumber(
+        List<Map.Entry<String, Double>> listOfFilteredMaps = Finder.filterListOfMapsByFirstAndSecondNumberToSmallList(
                 String.valueOf(twoWithMin3Q.getFirstNumber()),
                 String.valueOf(twoWithMin3Q.getSecondNumber()),
                 listOfSimilarities

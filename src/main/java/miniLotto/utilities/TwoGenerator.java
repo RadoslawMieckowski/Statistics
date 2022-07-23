@@ -29,21 +29,23 @@ public final class TwoGenerator {
      * danym zestawie. Określasz, ile ma znaleźć najbardziej podobnych dwójek dla każdej dwójki w kombinacji
      */
     public static <K extends String, V extends Comparable> List<List<Map.Entry<K, V>>> generateListOfTwos(int[] numbers, List<List<Map<K, V>>> mapList, int limitOfEach) throws Throwable {
-        List<Map.Entry<K, V>> listOfEntries = new LinkedList<>();
+        //List<Map.Entry<K, V>> listOfEntries = new LinkedList<>();
         List<List<Map.Entry<K, V>>> listOfLists = new LinkedList<>();
         List<Map.Entry<K, V>> listOfFilteredMaps;
             for (int i = 0; i < numbers.length; i++) {
                 for (int j = i + 1; j < numbers.length; j++) {
                     System.out.println("szukam dla " + numbers[i] + " i " + numbers[j]);
-                         listOfFilteredMaps = Finder.filterListOfMapsByFirstAndSecondNumber(
+                         listOfFilteredMaps = Finder.filterLargeListOfMapsByFirstAndSecondNumber(
                             String.valueOf(numbers[i]),
                             String.valueOf(numbers[j]),
                             mapList,
-                            listOfEntries
+                            limitOfEach
+                        //    listOfEntries
                     );
-                    List<Map.Entry<K, V>> listOfFiveMostSimilarEntries =
-                            Finder.findMostSimilarEntriesWithGivenTwo(listOfFilteredMaps, limitOfEach);
-                    listOfLists.add(listOfFiveMostSimilarEntries);
+                         listOfLists.add(listOfFilteredMaps);//tu dodamy poszczególne wyniki do zwracanej listy
+//                    List<Map.Entry<K, V>> listOfMostSimilarEntries =
+//                            Finder.findMostSimilarEntriesWithGivenTwo(listOfFilteredMaps, limitOfEach);
+//                    listOfLists.add(listOfMostSimilarEntries);
                 }
             }
         return listOfLists;

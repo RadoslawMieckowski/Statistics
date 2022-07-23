@@ -60,7 +60,7 @@ class FinderTest {
         list.add(map2);
 Presenter.presentList(list);
         List<Map.Entry<String, Double>> entryList = Finder.
-                filterListOfMapsByFirstAndSecondNumber("1", "2", list);
+                filterListOfMapsByFirstAndSecondNumberToSmallList("1", "2", list);
 
         assertThat(entryList).hasSize(4);
         assertThat(entryList.get(0).getKey()).isEqualTo("1|2 i 2|3");
@@ -88,7 +88,7 @@ Presenter.presentList(list);
         list.add(map2);
 
         List<Map.Entry<String, Double>> entryList = Finder.
-                filterListOfMapsByFirstAndSecondNumber("1", "2", list);
+                filterListOfMapsByFirstAndSecondNumberToSmallList("1", "2", list);
 
         assertThat(entryList).hasSize(3);
         assertThat(entryList.get(0).getKey()).isEqualTo("2|3 i 1|2");
@@ -115,7 +115,7 @@ Presenter.presentList(list);
         list.add(map2);
 
         List<Map.Entry<String, Double>> entryList = Finder.
-                filterListOfMapsByFirstAndSecondNumber("1", "2", list);
+                filterListOfMapsByFirstAndSecondNumberToSmallList("1", "2", list);
 
         assertThat(entryList).hasSize(3);
         assertThat(entryList.get(0).getKey()).isEqualTo("2|1 i 2|3");

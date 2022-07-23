@@ -22,7 +22,7 @@ public class TwoGenerotorDemo {
                     new int[]{13, 16, 26, 31}, listListOfTwos, 1
             );
 
-        Presenter.presentList(suggestedInNextDraws);
+       Presenter.presentList(suggestedInNextDraws);
     }
 }
 
