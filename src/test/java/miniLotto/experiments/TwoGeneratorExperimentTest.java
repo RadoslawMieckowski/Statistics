@@ -2,8 +2,6 @@ package miniLotto.experiments;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -14,7 +12,7 @@ class TwoGeneratorExperimentTest {
     final static String PATH = "src/main/resources/wyniki-minilotto-sortowane100.csv";
 
     @Test
-    void generateSearchedSetShouldReturnSet() throws Exception {
+    void generateSearchedSetShouldReturnSetI() throws Exception {
         Set<Integer> actualSet = TwoGeneratorExperiment.generateSearchedSet(PATH, 0);
 
         assertThat(actualSet).hasSize(17);
@@ -40,18 +38,35 @@ class TwoGeneratorExperimentTest {
     }
 
     @Test
-    void generateSearchedSetShouldReturn20SetsFrom100Lines() throws Exception {
-        List<Set<Integer>> listOfSets = new ArrayList<>(95);
-        int numberOfLines = 101 - 6;//ostatnia linia jest pusta
-        final int RECORDS_INTO_ACCOUNT = 95;//na tej linii ostatnia piątka
-        while (numberOfLines >= 0) {
-            Set<Integer> actualSet = TwoGeneratorExperiment.generateSearchedSet(
-                    PATH,
-                    RECORDS_INTO_ACCOUNT - numberOfLines);
-            listOfSets.add(actualSet);
-//            System.out.println("index:" + (listOfSets.size()-1) + actualSet);
-            numberOfLines--;
-        }
+    void generateSearchedSetShouldReturnSetII() throws Exception {
+        Set<Integer> actualSet = TwoGeneratorExperiment.generateSearchedSet(PATH, 95);
+
+        assertThat(actualSet).hasSize(17);
+        assertThat(actualSet).contains(8);
+        assertThat(actualSet).contains(25);
+        assertThat(actualSet).contains(36);
+        assertThat(actualSet).contains(38);
+        assertThat(actualSet).contains(40);
+        assertThat(actualSet).contains(7);
+        assertThat(actualSet).contains(9);
+        assertThat(actualSet).contains(34);
+        assertThat(actualSet).contains(39);
+        assertThat(actualSet).contains(2);
+        assertThat(actualSet).contains(11);
+        assertThat(actualSet).contains(12);
+        assertThat(actualSet).contains(28);
+        assertThat(actualSet).contains(41);
+        assertThat(actualSet).contains(14);
+        assertThat(actualSet).contains(15);
+        assertThat(actualSet).contains(37);
+        assertThat(actualSet).doesNotContain(6);
+        assertThat(actualSet).doesNotContain(17);
+    }
+
+    @Test
+    void generateSearchedSetsToGivenPointInCSVFileShouldReturn20SetsFrom100Lines() throws Exception {
+        List<Set<Integer>> listOfSets = TwoGeneratorExperiment.generateSearchedSetsToGivenPointInCSVFile(
+                100, PATH);
 
         assertThat(listOfSets.size()).isEqualTo(96);
 
