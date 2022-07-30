@@ -64,7 +64,7 @@ class TwoGeneratorExperimentTest {
     }
 
     @Test
-    void generateSearchedSetsToGivenPointInCSVFileShouldReturn20SetsFrom100Lines() throws Exception {
+    void generateSearchedSetsToGivenPointInCSVFileShouldReturn96SetsFrom100Lines() throws Exception {
         List<Set<Integer>> listOfSets = TwoGeneratorExperiment.generateSearchedSetsToGivenPointInCSVFile(
                 100, PATH);
 
@@ -111,5 +111,32 @@ class TwoGeneratorExperimentTest {
         assertThat(listOfSets.get(95)).contains(37);
         assertThat(listOfSets.get(95)).doesNotContain(6);
         assertThat(listOfSets.get(95)).doesNotContain(17);
+    }
+
+    @Test
+    void generateSearchedSetsToGivenPointInCSVFileShouldReturn95SetsFrom100Lines() throws Exception {
+        List<Set<Integer>> listOfSets = TwoGeneratorExperiment.generateSearchedSetsToGivenPointInCSVFile(
+                100, PATH);
+
+        assertThat(listOfSets.get(94)).hasSize(17);
+        assertThat(listOfSets.get(94)).contains(31);
+        assertThat(listOfSets.get(94)).contains(32);
+        assertThat(listOfSets.get(94)).contains(33);
+        assertThat(listOfSets.get(94)).contains(41);
+        assertThat(listOfSets.get(94)).contains(8);
+        assertThat(listOfSets.get(94)).contains(25);
+        assertThat(listOfSets.get(94)).contains(36);
+        assertThat(listOfSets.get(94)).contains(38);
+        assertThat(listOfSets.get(94)).contains(40);
+        assertThat(listOfSets.get(94)).contains(7);
+        assertThat(listOfSets.get(94)).contains(9);
+        assertThat(listOfSets.get(94)).contains(34);
+        assertThat(listOfSets.get(94)).contains(39);
+        assertThat(listOfSets.get(94)).contains(2);
+        assertThat(listOfSets.get(94)).contains(12);
+        assertThat(listOfSets.get(94)).contains(28);
+        assertThat(listOfSets.get(94)).contains(11);
+        assertThat(listOfSets.get(94)).doesNotContain(6);
+        assertThat(listOfSets.get(94)).doesNotContain(17);
     }
 }
