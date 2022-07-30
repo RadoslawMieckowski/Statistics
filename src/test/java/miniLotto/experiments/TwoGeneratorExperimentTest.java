@@ -44,15 +44,16 @@ class TwoGeneratorExperimentTest {
         List<Set<Integer>> listOfSets = new ArrayList<>(95);
         int numberOfLines = 101 - 6;//ostatnia linia jest pusta
         final int RECORDS_INTO_ACCOUNT = 95;//na tej linii ostatnia piątka
-        while (numberOfLines != 0) {
+        while (numberOfLines >= 0) {
             Set<Integer> actualSet = TwoGeneratorExperiment.generateSearchedSet(
                     PATH,
                     RECORDS_INTO_ACCOUNT - numberOfLines);
             listOfSets.add(actualSet);
+//            System.out.println("index:" + (listOfSets.size()-1) + actualSet);
             numberOfLines--;
         }
 
-        assertThat(listOfSets.size()).isEqualTo(95);
+        assertThat(listOfSets.size()).isEqualTo(96);
 
         assertThat(listOfSets.get(0)).hasSize(17);
         assertThat(listOfSets.get(0)).contains(4);
@@ -75,26 +76,25 @@ class TwoGeneratorExperimentTest {
         assertThat(listOfSets.get(0)).doesNotContain(6);
         assertThat(listOfSets.get(0)).doesNotContain(17);
 
-        assertThat(listOfSets.get(94)).hasSize(17);//ciekawe, że ten set też ma taki sam rozmiar co w pierszej szufladzie
-        assertThat(listOfSets.get(94)).contains(8);
-        assertThat(listOfSets.get(94)).contains(25);
-        assertThat(listOfSets.get(94)).contains(36);
-        assertThat(listOfSets.get(94)).contains(38);
-        assertThat(listOfSets.get(94)).contains(40);
-        assertThat(listOfSets.get(94)).contains(7);
-        assertThat(listOfSets.get(94)).contains(9);
-        assertThat(listOfSets.get(94)).contains(34);
-        assertThat(listOfSets.get(94)).contains(39);
-        assertThat(listOfSets.get(94)).contains(2);
-        assertThat(listOfSets.get(94)).contains(11);
-        assertThat(listOfSets.get(94)).contains(12);
-        assertThat(listOfSets.get(94)).contains(28);
-        assertThat(listOfSets.get(94)).contains(41);
-        assertThat(listOfSets.get(94)).contains(14);
-        assertThat(listOfSets.get(94)).contains(15);
-        assertThat(listOfSets.get(94)).contains(37);
-        assertThat(listOfSets.get(94)).doesNotContain(6);
-        assertThat(listOfSets.get(94)).doesNotContain(17);
-
+        assertThat(listOfSets.get(95)).hasSize(17);//ciekawe, że ten set też ma taki sam rozmiar co w pierszej szufladzie
+        assertThat(listOfSets.get(95)).contains(8);
+        assertThat(listOfSets.get(95)).contains(25);
+        assertThat(listOfSets.get(95)).contains(36);
+        assertThat(listOfSets.get(95)).contains(38);
+        assertThat(listOfSets.get(95)).contains(40);
+        assertThat(listOfSets.get(95)).contains(7);
+        assertThat(listOfSets.get(95)).contains(9);
+        assertThat(listOfSets.get(95)).contains(34);
+        assertThat(listOfSets.get(95)).contains(39);
+        assertThat(listOfSets.get(95)).contains(2);
+        assertThat(listOfSets.get(95)).contains(11);
+        assertThat(listOfSets.get(95)).contains(12);
+        assertThat(listOfSets.get(95)).contains(28);
+        assertThat(listOfSets.get(95)).contains(41);
+        assertThat(listOfSets.get(95)).contains(14);
+        assertThat(listOfSets.get(95)).contains(15);
+        assertThat(listOfSets.get(95)).contains(37);
+        assertThat(listOfSets.get(95)).doesNotContain(6);
+        assertThat(listOfSets.get(95)).doesNotContain(17);
     }
 }
