@@ -4,8 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-public class TwoGeneratorExperiment {
+public final class TwoGeneratorExperiment {
 
+private TwoGeneratorExperiment() {}
 
     //jak chcę do linijki nr 100 włącznie, powinieniem przewinąć na 95 linie, czyli przekazać 95
     public static Set<Integer> generateSearchedSet(String path, int pointer) throws FileNotFoundException, IllegalArgumentException {

@@ -9,7 +9,7 @@ import miniLotto.utilities.TwoGenerator;
 import java.util.List;
 import java.util.Map;
 
-public class TwoGenerotorDemo {
+public class TwoGeneratorDemo {
     public static void main(String[] args) throws Throwable {
 
         List<Map<String, Double>> listOfSimilarities = Serializer.deserializeListOfMaps(
