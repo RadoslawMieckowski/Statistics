@@ -1,8 +1,13 @@
 package miniLotto.experiments;
 
+import miniLotto.utilities.ListFactory;
+import miniLotto.utilities.Presenter;
+import miniLotto.utilities.Serializer;
+import miniLotto.utilities.TwoGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -13,15 +18,12 @@ class TwoGeneratorExperimentTest {
 
     @Test
     void generateSearchedSetShouldReturnSetI() throws Exception {
-        Set<Integer> actualSet = TwoGeneratorExperiment.generateSearchedSet(PATH, 0);
-
-        assertThat(actualSet).hasSize(17);
+        Set<Integer> actualSet = TwoGeneratorExperiment.generateSearchedSet(PATH, 1);
+//szukany set NIE uwzględnia poprzedniego losowania!
+        assertThat(actualSet).hasSize(19);
         assertThat(actualSet).contains(4);
-        assertThat(actualSet).contains(12);
-        assertThat(actualSet).contains(15);
-        assertThat(actualSet).contains(16);
-        assertThat(actualSet).contains(20);
         assertThat(actualSet).contains(3);
+        assertThat(actualSet).contains(20);
         assertThat(actualSet).contains(29);
         assertThat(actualSet).contains(32);
         assertThat(actualSet).contains(10);
@@ -33,8 +35,13 @@ class TwoGeneratorExperimentTest {
         assertThat(actualSet).contains(8);
         assertThat(actualSet).contains(21);
         assertThat(actualSet).contains(24);
-        assertThat(actualSet).doesNotContain(6);
-        assertThat(actualSet).doesNotContain(17);
+        assertThat(actualSet).contains(6);
+        assertThat(actualSet).contains(12);
+        assertThat(actualSet).contains(17);
+        assertThat(actualSet).contains(22);
+        assertThat(actualSet).contains(28);
+        assertThat(actualSet).doesNotContain(1);
+        assertThat(actualSet).doesNotContain(2);
     }
 
     @Test
@@ -138,5 +145,18 @@ class TwoGeneratorExperimentTest {
         assertThat(listOfSets.get(94)).contains(11);
         assertThat(listOfSets.get(94)).doesNotContain(6);
         assertThat(listOfSets.get(94)).doesNotContain(17);
+    }
+
+    @Test
+    void generateProposedBroadSetTest() throws Throwable {
+        List<Map<String, Double>> listOfSimilarities = Serializer.deserializeListOfMaps(
+                "src/main/resources/list_of_mapped_distances.ser");
+        List<List<Map<String, Double>>> listListOfTwos = ListFactory.toListOfListOfMaps(listOfSimilarities, 1_000);
+        int[] previousDraw = new int[]{4, 19, 22, 26, 29};
+        List<List<Map.Entry<String, Double>>> suggestedInNextDraws = TwoGenerator.generateListOfTwos(
+                previousDraw, listListOfTwos, 3
+        );
+
+        Set<Integer> actualBroadSet = TwoGeneratorExperiment.generateProposedBroadSet(suggestedInNextDraws, previousDraw);
     }
 }

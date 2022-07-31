@@ -3,12 +3,14 @@ package miniLotto.experiments;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public final class TwoGeneratorExperiment {
 
 private TwoGeneratorExperiment() {}
 
     //jak chcę do linijki nr 100 włącznie, powinieniem przewinąć na 95 linie, czyli przekazać 95
+    //PAMIĘNTAJ: szukany set NIE powinien uwzględniać poprzedniego losowania, więc najlepiej wywołaniu tej metody po prostu usuń pierwszy element
     public static Set<Integer> generateSearchedSet(String path, int pointer) throws FileNotFoundException, IllegalArgumentException {
         if (pointer < 0) {
             throw new IllegalArgumentException("pointer must not be smaller than 0!");
@@ -46,5 +48,26 @@ private TwoGeneratorExperiment() {}
             value--;
         }
         return listOfSets;
+    }
+
+    //4|19 i 14|30
+    //4|19 i 7|33
+
+    //generuje zbiór liczb bez liczb z zadanego losowania
+    public static <K extends String, V extends Comparable> Set<V> generateProposedBroadSet(List<List<Map.Entry<K, V>>> list, V[] previousDraw) {
+        Set<V> broadProposedSet = new HashSet<>();
+        list.stream().flatMap(List::stream)
+                .forEach(entry -> parse(entry.getKey(), broadProposedSet));
+        Set<V> previousDrawSet = Arrays.stream(previousDraw).collect(Collectors.toSet());
+        broadProposedSet.removeAll(previousDrawSet);
+        return broadProposedSet;
+    }
+
+    //wyciąga z dostarczonego stringa liczby i umieszcza je w dostarczonym zbiorze
+    private static <V> void parse(String line, Set<V> set) {
+        String[] array = line.split(" i ");
+        for (String numberString : array) {
+            Arrays.stream(numberString.split("|")).forEach(element -> set.add((V)element));
+        }
     }
 }
