@@ -3,6 +3,7 @@ package miniLotto.experiments;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public final class TwoGeneratorExperiment {
@@ -55,21 +56,29 @@ private TwoGeneratorExperiment() {}
 
     //generuje zbiór liczb bez liczb z zadanego losowania
     public static <K extends String, V extends Comparable> Set<Integer> generateProposedBroadSet(List<List<Map.Entry<K, V>>> list, int[] previousDraw) {
-        Set<Integer> broadProposedSet = new HashSet<>();
+        List<Integer> broadProposedList = new LinkedList<>();
         list.stream().flatMap(List::stream)
-                .forEach(entry -> parse(entry.getKey(), broadProposedSet));
+                .forEach(entry -> parse(entry.getKey(), broadProposedList));
+
         Set<Integer> previousDrawSet = new HashSet<>();
         Set<Integer> finalPreviousDrawSet = previousDrawSet;//kompilator skuczał, żeby tak zrobić
         Arrays.stream(previousDraw).forEach(e -> finalPreviousDrawSet.add(Integer.valueOf(e)));
-        broadProposedSet.removeAll(previousDrawSet);
-        return broadProposedSet;
+        broadProposedList.removeAll(previousDrawSet);
+
+        Map<Integer, Long> numbersMap = broadProposedList.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+         return numbersMap.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() > 1)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toSet());
     }
 
     //wyciąga z dostarczonego stringa liczby i umieszcza je w dostarczonym zbiorze
-    private static <V> void parse(String line, Set<V> set) {
+    private static <V> void parse(String line, List<V> list) {
         String[] array = line.split(" i ");
         for (String numberString : array) {
-            Arrays.stream(numberString.split("|")).forEach(element -> set.add((V)element));
+            Arrays.stream(numberString.split("|")).forEach(element -> list.add((V)element));
         }
     }
 }
