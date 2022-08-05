@@ -54,11 +54,13 @@ private TwoGeneratorExperiment() {}
     //4|19 i 7|33
 
     //generuje zbiór liczb bez liczb z zadanego losowania
-    public static <K extends String, V extends Comparable> Set<V> generateProposedBroadSet(List<List<Map.Entry<K, V>>> list, V[] previousDraw) {
-        Set<V> broadProposedSet = new HashSet<>();
+    public static <K extends String, V extends Comparable> Set<Integer> generateProposedBroadSet(List<List<Map.Entry<K, V>>> list, int[] previousDraw) {
+        Set<Integer> broadProposedSet = new HashSet<>();
         list.stream().flatMap(List::stream)
                 .forEach(entry -> parse(entry.getKey(), broadProposedSet));
-        Set<V> previousDrawSet = Arrays.stream(previousDraw).collect(Collectors.toSet());
+        Set<Integer> previousDrawSet = new HashSet<>();
+        Set<Integer> finalPreviousDrawSet = previousDrawSet;//kompilator skuczał, żeby tak zrobić
+        Arrays.stream(previousDraw).forEach(e -> finalPreviousDrawSet.add(Integer.valueOf(e)));
         broadProposedSet.removeAll(previousDrawSet);
         return broadProposedSet;
     }
