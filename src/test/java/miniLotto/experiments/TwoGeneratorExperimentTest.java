@@ -152,13 +152,15 @@ class TwoGeneratorExperimentTest {
         List<Map<String, Double>> listOfSimilarities = Serializer.deserializeListOfMaps(
                 "src/main/resources/list_of_mapped_distances.ser");
         List<List<Map<String, Double>>> listListOfTwos = ListFactory.toListOfListOfMaps(listOfSimilarities, 1_000);
-        int[] previousDraw = new int[]{4, 19, 22, 26, 29};
+        int[] previousDraw = new int[]{10, 23, 24, 28, 35};
         List<List<Map.Entry<String, Double>>> suggestedInNextDraws = TwoGenerator.generateListOfTwos(
                 previousDraw, listListOfTwos, 3
         );
 
         Set<Integer> actualBroadSet = TwoGeneratorExperiment.generateProposedBroadSet(suggestedInNextDraws, previousDraw);
 
-
+        assertThat(actualBroadSet).contains(17,11,6,26,36,8,30,1,33,19,4,32,27,16,37,42);
+        assertThat(actualBroadSet).hasSize(16);
+        assertThat(actualBroadSet).doesNotContain(5,9,10,13,14,18,20,23,24,	28,29,34,35,40);
     }
 }
