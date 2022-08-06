@@ -1,11 +1,11 @@
 package miniLotto.experiments;
 
 import miniLotto.utilities.ListFactory;
-import miniLotto.utilities.Presenter;
 import miniLotto.utilities.Serializer;
 import miniLotto.utilities.TwoGenerator;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -145,6 +145,16 @@ class TwoGeneratorExperimentTest {
         assertThat(listOfSets.get(94)).contains(11);
         assertThat(listOfSets.get(94)).doesNotContain(6);
         assertThat(listOfSets.get(94)).doesNotContain(17);
+    }
+
+    @Test
+    void parseTest() {
+        ArrayList<Integer> actualList = new ArrayList<>();
+        TwoGeneratorExperiment.parse("2|17 i 10|23", actualList);
+
+        assertThat(actualList).hasSize(4);
+        assertThat(actualList).contains(2, 17, 10, 23);
+        assertThat(actualList).doesNotContain(1, 7, 0, 3);
     }
 
     @Test
