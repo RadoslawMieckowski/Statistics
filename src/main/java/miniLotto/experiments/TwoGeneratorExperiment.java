@@ -56,6 +56,7 @@ private TwoGeneratorExperiment() {}
     //4|19 i 7|33
 
     //generuje zbiór liczb bez liczb z zadanego losowania
+    //!! nie uwzględnia liczb, które nie zostały zaproponowane przez algorytm proponujący pasujące liczby
     public static <K extends String, V extends Comparable> Set<Integer> generateProposedBroadSet(List<List<Map.Entry<K, V>>> list, int[] previousDraw) {
         List<Integer> broadProposedList = new LinkedList<>();
         list.stream().flatMap(List::stream)//   OK  .forEach(System.out::println);
@@ -65,6 +66,7 @@ private TwoGeneratorExperiment() {}
         Set<Integer> previousDrawSet = new HashSet<>();
         Set<Integer> finalPreviousDrawSet = previousDrawSet;//kompilator skuczał, żeby tak zrobić
         Arrays.stream(previousDraw).forEach(e -> finalPreviousDrawSet.add(Integer.valueOf(e)));
+        //może tu dodasz te liczby z "drugiego zbioru"
         broadProposedList.removeAll(previousDrawSet);
 
         Map<Integer, Long> numbersMap = broadProposedList.stream()
