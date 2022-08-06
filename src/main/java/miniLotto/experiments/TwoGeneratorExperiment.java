@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public final class TwoGeneratorExperiment {
 
@@ -79,8 +80,8 @@ private TwoGeneratorExperiment() {}
     //wyciąga z dostarczonego stringa liczby i umieszcza je w dostarczonej liście
     public static <V> void parse(String line, List<V> list) {
         String[] array = line.split(" i ");
-        for (String numberString : array) {
-            Arrays.stream(numberString.split("|")).forEach(element -> list.add((V)element));
-        }
+        Arrays.stream(array)
+                .forEach(e ->
+                        Arrays.stream(e.split("\\|")).map(Integer::valueOf).forEach(x -> list.add((V)x)));
     }
 }
