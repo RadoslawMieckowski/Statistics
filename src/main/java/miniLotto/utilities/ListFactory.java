@@ -3,7 +3,12 @@ package miniLotto.utilities;
 import lombok.NonNull;
 import miniLotto.models.Two;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public final class ListFactory {
     private ListFactory() {}
@@ -60,5 +65,13 @@ public final class ListFactory {
             lastIndex = 0;
         }
         return returnList;
+    }
+
+    public static List<String[]> readFile(String fileName, String separator) throws IOException {
+        List<String> result;
+        try (Stream<String> lines = Files.lines(Paths.get(fileName))) {
+            result = lines.collect(Collectors.toList());
+        }
+        return result.stream().map(line -> line.split(separator)).collect(Collectors.toList());
     }
 }

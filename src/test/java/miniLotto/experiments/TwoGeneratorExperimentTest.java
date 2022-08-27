@@ -160,7 +160,7 @@ class TwoGeneratorExperimentTest {
     @Test//przy eksperymentach tego typu w zależności od tego,
         // jakie są mapy podobieństwa dwójek (będzie OK, jak nie będą zmieniane)
         // mogą wychodzić różne wyniki w przyszłości
-    void generateProposedBroadSetTest() throws Throwable {
+    void generateNarrowProposedSetTest() throws Throwable {
         List<Map<String, Double>> listOfSimilarities = Serializer.deserializeListOfMaps(
                 "src/main/resources/list_of_mapped_distances.ser");
         List<List<Map<String, Double>>> listListOfTwos = ListFactory.toListOfListOfMaps(listOfSimilarities, 1_000);
@@ -169,7 +169,7 @@ class TwoGeneratorExperimentTest {
                 previousDraw, listListOfTwos, 3
         );
 
-        Set<Integer> actualBroadSet = TwoGeneratorExperiment.generateProposedBroadSet(suggestedInNextDraws, previousDraw);
+        Set<Integer> actualBroadSet = TwoGeneratorExperiment.generateNarrowProposedSet(suggestedInNextDraws, previousDraw);
 
         assertThat(actualBroadSet).contains(17,11,6,26,36,8,30,1,33,19,4,32,27,16,37,42);
         assertThat(actualBroadSet).hasSize(16);
@@ -177,7 +177,7 @@ class TwoGeneratorExperimentTest {
     }
 
     @Test
-    void generateProposedBroadSetTestWithAnotherData() throws Throwable {
+    void generateNarrowProposedSetTestWithAnotherData() throws Throwable {
         List<Map<String, Double>> listOfSimilarities = Serializer.deserializeListOfMaps(
                 "src/main/resources/list_of_mapped_distances.ser");
         List<List<Map<String, Double>>> listListOfTwos = ListFactory.toListOfListOfMaps(listOfSimilarities, 1_000);
@@ -186,7 +186,7 @@ class TwoGeneratorExperimentTest {
                 previousDraw, listListOfTwos, 3
         );
 
-        Set<Integer> actualBroadSet = TwoGeneratorExperiment.generateProposedBroadSet(suggestedInNextDraws, previousDraw);
+        Set<Integer> actualBroadSet = TwoGeneratorExperiment.generateNarrowProposedSet(suggestedInNextDraws, previousDraw);
 
         assertThat(actualBroadSet).contains(18,12,26,29,6,27,31,3,33,20,22,2,10,32,34);
         assertThat(actualBroadSet).hasSize(15);
@@ -194,7 +194,7 @@ class TwoGeneratorExperimentTest {
     }
 
     @Test
-    void generateProposedBroadSetTestWithAnotherData2() throws Throwable {
+    void generateNarrowProposedSetTestWithAnotherData2() throws Throwable {
         List<Map<String, Double>> listOfSimilarities = Serializer.deserializeListOfMaps(
                 "src/main/resources/list_of_mapped_distances.ser");
         List<List<Map<String, Double>>> listListOfTwos = ListFactory.toListOfListOfMaps(listOfSimilarities, 1_000);
@@ -203,7 +203,7 @@ class TwoGeneratorExperimentTest {
                 previousDraw, listListOfTwos, 3
         );
 
-        Set<Integer> actualBroadSet = TwoGeneratorExperiment.generateProposedBroadSet(suggestedInNextDraws, previousDraw);
+        Set<Integer> actualBroadSet = TwoGeneratorExperiment.generateNarrowProposedSet(suggestedInNextDraws, previousDraw);
 
         assertThat(actualBroadSet).contains(27,10,2,12,6,42,14,36,17,37,1,35,34,15,31);
         assertThat(actualBroadSet).hasSize(15);

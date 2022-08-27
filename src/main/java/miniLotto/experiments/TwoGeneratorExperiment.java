@@ -37,6 +37,7 @@ private TwoGeneratorExperiment() {}
     }
 
     //jeżeli chcesz mieć sety wygenerowane na podstawie 100 linii, musisz przekazać 100 jako parametr
+    //od początku pliku do wybranego miejsca, nie od wybranego miejsca do 100 linijki naprzód, dlatego w testach używam ostatnich 100 losowań z pliku wyniki-minilotto-sortowane100
     public static List<Set<Integer>> generateSearchedSetsToGivenPointInCSVFile(int numberOfNotEmptyLines, String path) throws FileNotFoundException {
         int value = numberOfNotEmptyLines - 5;
         List<Set<Integer>> listOfSets = new ArrayList<>(value);
@@ -57,7 +58,7 @@ private TwoGeneratorExperiment() {}
 
     //generuje zbiór liczb bez liczb z zadanego losowania
     //!! nie uwzględnia liczb, które nie zostały zaproponowane przez algorytm proponujący pasujące liczby
-    public static <K extends String, V extends Comparable> Set<Integer> generateProposedBroadSet(List<List<Map.Entry<K, V>>> list, int[] previousDraw) {
+    public static <K extends String, V extends Comparable> Set<Integer> generateNarrowProposedSet(List<List<Map.Entry<K, V>>> list, int[] previousDraw) {
         List<Integer> broadProposedList = new LinkedList<>();
         list.stream().flatMap(List::stream)//   OK  .forEach(System.out::println);
                 .forEach(entry -> parse(entry.getKey(), broadProposedList));
