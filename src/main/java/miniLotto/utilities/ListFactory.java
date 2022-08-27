@@ -76,17 +76,17 @@ public final class ListFactory {
                 .map(line -> line.split(separator))
                 .collect(Collectors.toList());
 
-        int SIZE_OF_RECORD = intermediateList.size();
-        List<Integer[]> returnList = new ArrayList<>(SIZE_OF_RECORD);
+        int RECORDS = intermediateList.size();
+        List<Integer[]> returnList = new ArrayList<>(RECORDS);
         int x = 0;
         //inicjacja tablic w liście
-        while (x != SIZE_OF_RECORD) {
+        while (x != RECORDS) {
             returnList.add(new Integer[5]);
             x++;
         }
 
-        for (int i = 0; i < SIZE_OF_RECORD; i++) {
-            for (int j = 0; j < SIZE_OF_RECORD; j++) {
+        for (int i = 0; i < RECORDS; i++) {
+            for (int j = 0; j < 5; j++) {
                 returnList.get(i)[j] = Integer.parseInt(intermediateList.get(i)[j]);
             }
         }

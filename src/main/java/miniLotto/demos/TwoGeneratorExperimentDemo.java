@@ -22,18 +22,25 @@ public class TwoGeneratorExperimentDemo {
                 .toListOfListOfMaps(listOfSimilarities, 1_000);
 
         //pobranie całego pliku jako lista tablic Integer
+        List<Integer[]> integerList = null;
+        int RECORDS = 0;
         int[] previousDraw = new int[5];
         try {
-             List<Integer[]> integerList = ListFactory.readFile(PATH, "\t");
+             integerList = ListFactory.readFile(PATH, "\t");
+             RECORDS = integerList.size();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        List<List<Map.Entry<String, Double>>> suggestedInNextDraws = TwoGenerator.generateListOfTwos(
-//                previousDraw, listListOfTwos, 3
-//        );
+        for (int i = 0; i < RECORDS; i++) {
+            for (int j = 0; j < 5; j++) {
+                previousDraw[j] = integerList.get(i)[j];
+            }
+            List<List<Map.Entry<String, Double>>> suggestedInNextDraws = TwoGenerator.generateListOfTwos(
+                    previousDraw, listListOfTwos, 3
+            );
 
-//        Set<Integer> actualBroadSet = TwoGeneratorExperiment.generateNarrowProposedSet(suggestedInNextDraws, previousDraw);
-
+            Set<Integer> actualBroadSet = TwoGeneratorExperiment.generateNarrowProposedSet(suggestedInNextDraws, previousDraw);
+        }
     }
 }
