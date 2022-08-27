@@ -67,11 +67,29 @@ public final class ListFactory {
         return returnList;
     }
 
-    public static List<String[]> readFile(String fileName, String separator) throws IOException {
+    public static List<Integer[]> readFile(String fileName, String separator) throws IOException {
         List<String> result;
         try (Stream<String> lines = Files.lines(Paths.get(fileName))) {
             result = lines.collect(Collectors.toList());
         }
-        return result.stream().map(line -> line.split(separator)).collect(Collectors.toList());
+        List<String[]> intermediateList = result.stream()
+                .map(line -> line.split(separator))
+                .collect(Collectors.toList());
+
+        int SIZE_OF_RECORD = intermediateList.size();
+        List<Integer[]> returnList = new ArrayList<>(SIZE_OF_RECORD);
+        int x = 0;
+        //inicjacja tablic w liście
+        while (x != SIZE_OF_RECORD) {
+            returnList.add(new Integer[5]);
+            x++;
+        }
+
+        for (int i = 0; i < SIZE_OF_RECORD; i++) {
+            for (int j = 0; j < SIZE_OF_RECORD; j++) {
+                returnList.get(i)[j] = Integer.parseInt(intermediateList.get(i)[j]);
+            }
+        }
+        return returnList;
     }
 }

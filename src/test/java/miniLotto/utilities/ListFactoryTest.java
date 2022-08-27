@@ -100,4 +100,16 @@ class ListFactoryTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("passed list should not be empty");
     }
+
+    @Test
+    void readFileTest() throws Exception{
+
+        List<Integer[]>actualList = ListFactory.readFile("src/test/java/miniLotto/testDraw.txt",
+                "\t");
+
+        assertThat(actualList).hasSize(2);
+        assertThat(actualList.get(0)).contains(4, 12, 15, 16, 20);
+        assertThat(actualList.get(1)).contains(3, 4, 20, 29, 32);
+    }
+
 }

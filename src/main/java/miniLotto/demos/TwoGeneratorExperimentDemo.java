@@ -18,20 +18,22 @@ public class TwoGeneratorExperimentDemo {
         //stworzenie listy podobieństw dwójek
         List<Map<String, Double>> listOfSimilarities = Serializer.deserializeListOfMaps(
                 "src/main/resources/list_of_mapped_distances.ser");
-        List<List<Map<String, Double>>> listListOfTwos = ListFactory.toListOfListOfMaps(listOfSimilarities, 1_000);
+        List<List<Map<String, Double>>> listListOfTwos = ListFactory
+                .toListOfListOfMaps(listOfSimilarities, 1_000);
 
         //pobranie całego pliku jako lista tablic Integer
-        int[] previousDraw = new int[0];
+        int[] previousDraw = new int[5];
         try {
-            previousDraw = ListFactory.readFile(PATH, "\t");
+             List<Integer[]> integerList = ListFactory.readFile(PATH, "\t");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        List<List<Map.Entry<String, Double>>> suggestedInNextDraws = TwoGenerator.generateListOfTwos(
-                previousDraw, listListOfTwos, 3
-        );
+//        List<List<Map.Entry<String, Double>>> suggestedInNextDraws = TwoGenerator.generateListOfTwos(
+//                previousDraw, listListOfTwos, 3
+//        );
 
-        Set<Integer> actualBroadSet = TwoGeneratorExperiment.generateNarrowProposedSet(suggestedInNextDraws, previousDraw);
+//        Set<Integer> actualBroadSet = TwoGeneratorExperiment.generateNarrowProposedSet(suggestedInNextDraws, previousDraw);
 
     }
 }
