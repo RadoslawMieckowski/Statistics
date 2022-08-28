@@ -11,7 +11,10 @@ public final class Rounder {
 
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
-
+        if (value == Double.NaN)
+        {
+            return 0;
+        }
         BigDecimal bigDecimal = new BigDecimal(Double.toString(value));
         bigDecimal = bigDecimal.setScale(places, RoundingMode.HALF_UP);
         return bigDecimal.doubleValue();
