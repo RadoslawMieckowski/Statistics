@@ -120,7 +120,7 @@ class TwoGeneratorExperimentTest {
         assertThat(listOfSets.get(95)).doesNotContain(17);
     }
 
-    @Test
+    @Test//nie wiem, czy nazwa nie jest myląca
     void generateSearchedSetsToGivenPointInCSVFileShouldReturn95SetsFrom100Lines() throws Exception {
         List<Set<Integer>> listOfSets = TwoGeneratorExperiment.generateSearchedSetsToGivenPointInCSVFile(
                 100, PATH);
