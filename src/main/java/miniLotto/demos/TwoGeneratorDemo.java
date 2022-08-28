@@ -19,7 +19,7 @@ public class TwoGeneratorDemo {
         List<List<Map<String, Double>>> listListOfTwos = ListFactory.toListOfListOfMaps(listOfSimilarities, 1_000);
 
             List<List<Map.Entry<String, Double>>> suggestedInNextDraws = TwoGenerator.generateListOfTwos(
-                    new int[]{4, 19, 22, 26, 29}, listListOfTwos, 3
+                    new int[]{4, 12, 15, 16, 20}, listListOfTwos, 3
             );
 
        Presenter.presentList(suggestedInNextDraws);

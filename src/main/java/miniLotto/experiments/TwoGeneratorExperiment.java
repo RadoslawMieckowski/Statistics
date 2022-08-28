@@ -79,6 +79,28 @@ private TwoGeneratorExperiment() {}
                 .collect(Collectors.toSet());
     }
 
+    //robi to samo co powyższa, ale można określać minimalny próg powtórzeń
+    public static <K extends String, V extends Comparable> Set<Integer> generateNarrowProposedSetWithLimit(List<List<Map.Entry<K, V>>> list, int[] previousDraw, int limitOfOccurences) {
+        List<Integer> broadProposedList = new LinkedList<>();
+        list.stream().flatMap(List::stream)//   OK  .forEach(System.out::println);
+                .forEach(entry -> parse(entry.getKey(), broadProposedList));
+        //System.out.println("broadProposedList: " + broadProposedList);
+
+        Set<Integer> previousDrawSet = new HashSet<>();
+        Set<Integer> finalPreviousDrawSet = previousDrawSet;//kompilator skuczał, żeby tak zrobić
+        Arrays.stream(previousDraw).forEach(e -> finalPreviousDrawSet.add(Integer.valueOf(e)));
+        //może tu dodasz te liczby z "drugiego zbioru"
+        broadProposedList.removeAll(previousDrawSet);
+
+        Map<Integer, Long> numbersMap = broadProposedList.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        return numbersMap.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() > limitOfOccurences)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toSet());
+    }
+
 //2|17 i 10|23
     //wyciąga z dostarczonego stringa liczby i umieszcza je w dostarczonej liście
     public static <V> void parse(String line, List<V> list) {
