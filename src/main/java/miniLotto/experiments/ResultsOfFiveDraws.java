@@ -7,9 +7,11 @@ import java.util.Map;
 
 public class ResultsOfFiveDraws {
     private Map<String, Integer> results;
+    private int addMethodCounter;
 
     public ResultsOfFiveDraws() {
         results = new LinkedHashMap();
+        addMethodCounter = 0;
         results.put("Zero", 0);
         results.put("Jedynka", 0);
         results.put("Dwójka", 0);
@@ -19,6 +21,10 @@ public class ResultsOfFiveDraws {
     }
 
     public void add(int result) {
+        addMethodCounter++;
+        if (addMethodCounter == 6) {
+            throw new RuntimeException("Zbyt duża ilość wywołań metody add na obiekcie klasy ResultsOfFiveDraws !");
+        }
         switch (result) {
             case 0 : results.put("Zero", results.get("Zero") + 1);
                     break;
@@ -33,6 +39,10 @@ public class ResultsOfFiveDraws {
             case 5 : results.put("Piątka", results.get("Piątka") + 1);
                     break;
         }
+    }
+
+    public int get(String key) {
+        return results.get(key);
     }
 
     public String showResults() {
