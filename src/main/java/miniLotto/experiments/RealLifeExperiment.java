@@ -61,10 +61,11 @@ public class RealLifeExperiment {
                     results.add(result);
                 }
                 i += 5;
+                System.out.println("numer ostatniego losowania: " + i);
                 results.showResults();
                 System.out.println("=======================================");
             }
-
+// sprawdź na małym zbiorze, czy wszystko działa dobrze
         } catch (IOException e) {
             e.printStackTrace();
         }
