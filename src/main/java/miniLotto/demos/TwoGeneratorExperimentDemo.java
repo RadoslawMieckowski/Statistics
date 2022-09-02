@@ -15,8 +15,8 @@ public class TwoGeneratorExperimentDemo {
     public static void main(String[] args) {
         final String PATH = "src/main/resources/wyniki-minilotto-sortowane100.csv";
 
-        final int LIMIT_OF_EACH = 6;
-        final int LIMIT_OF_OCCURENCES = 5;
+        final int LIMIT_OF_EACH = 5;
+        final int LIMIT_OF_OCCURENCES = 2;
 
         //stworzenie listy podobieństw dwójek
         List<Map<String, Double>> listOfSimilarities = Serializer.deserializeListOfMaps(

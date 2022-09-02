@@ -11,7 +11,7 @@ public final class Rounder {
 
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
-        if (value == Double.NaN)
+        if (Double.isNaN(value))
         {
             return 0;
         }
