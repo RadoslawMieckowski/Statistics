@@ -58,6 +58,7 @@ public class RealLifeExperiment {
                     int result = nextDrawnSet.size();
                     //zapis result do DrawStatics
                 }
+                i += 5;
             }
 
         } catch (IOException e) {
