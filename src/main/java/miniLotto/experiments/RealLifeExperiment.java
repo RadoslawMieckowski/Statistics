@@ -51,14 +51,18 @@ public class RealLifeExperiment {
                 Set<Integer> narrowSet = TwoGeneratorExperiment
                         .generateNarrowProposedSetWithLimit(suggestedInNextDraws, previousDraw, LIMIT_OF_OCCURENCES);
                 //wczytanie następnego losowania jako Set
+                ResultsOfFiveDraws results = new ResultsOfFiveDraws();
                 for (int x = 1; x <= 5; x++) {
                     int proposedSetSize = narrowSet.size();
                     Set<Integer> nextDrawnSet = Arrays.stream(integerRecordsList.get(i + x)).collect(Collectors.toSet());
                     nextDrawnSet.retainAll(narrowSet);
                     int result = nextDrawnSet.size();
-                    //zapis result do DrawStatics
+                    //zapis result do ResultsOfFiveDraws
+                    results.add(result);
                 }
                 i += 5;
+                results.showResults();
+                System.out.println("=======================================");
             }
 
         } catch (IOException e) {
