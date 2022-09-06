@@ -1,5 +1,6 @@
 package miniLotto.demos;
 
+import miniLotto.experiments.TwoGeneratorExperiment;
 import miniLotto.models.Two;
 import miniLotto.utilities.ListFactory;
 import miniLotto.utilities.Presenter;
@@ -8,8 +9,11 @@ import miniLotto.utilities.TwoGenerator;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class TwoGeneratorDemo {
+    private static final int LIMIT_OF_OCCURENCES = 1;
+
     public static void main(String[] args) throws Throwable {
 
         List<Map<String, Double>> listOfSimilarities = Serializer.deserializeListOfMaps(
@@ -18,11 +22,18 @@ public class TwoGeneratorDemo {
 //        Presenter.presentList(listOfSimilarities);
         List<List<Map<String, Double>>> listListOfTwos = ListFactory.toListOfListOfMaps(listOfSimilarities, 1_000);
 
-            List<List<Map.Entry<String, Double>>> suggestedInNextDraws = TwoGenerator.generateListOfTwos(
-                    new int[]{4, 12, 15, 16, 20}, listListOfTwos, 3
+
+        int previousDraw[] = new int[]{7, 16, 21, 31, 42};
+        List<List<Map.Entry<String, Double>>> suggestedInNextDraws = TwoGenerator.generateListOfTwos(
+                    previousDraw, listListOfTwos, 3
             );
 
-       Presenter.presentList(suggestedInNextDraws);
+        Set<Integer> narrowSet = TwoGeneratorExperiment
+                .generateNarrowProposedSetWithLimit(suggestedInNextDraws, previousDraw, LIMIT_OF_OCCURENCES);
+
+        Presenter.presentList(suggestedInNextDraws);
+        System.out.println();
+        System.out.println("narrowSet: " + narrowSet);
     }
 }
 
