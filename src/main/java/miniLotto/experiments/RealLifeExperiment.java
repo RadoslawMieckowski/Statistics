@@ -5,10 +5,7 @@ import miniLotto.utilities.Serializer;
 import miniLotto.utilities.TwoGenerator;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class RealLifeExperiment {
@@ -52,15 +49,25 @@ public class RealLifeExperiment {
                         .generateNarrowProposedSetWithLimit(suggestedInNextDraws, previousDraw, LIMIT_OF_OCCURENCES);
                 //wczytanie następnego losowania jako Set
                 ResultsOfFiveDraws results = new ResultsOfFiveDraws();
+                System.out.println("narrowSet " + narrowSet + "before loop");
+                System.out.println();
                 for (int x = 1; x <= 5; x++) {
-                    int proposedSetSize = narrowSet.size();
+                    if (i + x == RECORDS_NUMBER) {
+                        break;
+                    }
                     Set<Integer> nextDrawnSet = Arrays.stream(integerRecordsList.get(i + x)).collect(Collectors.toSet());
+                    Set<Integer> setToExclude = new HashSet<>(Set.copyOf(nextDrawnSet));
                     nextDrawnSet.retainAll(narrowSet);
-                    int result = nextDrawnSet.size();
+                    int result = 5 - nextDrawnSet.size();
                     //zapis result do ResultsOfFiveDraws
                     results.add(result);
+                    narrowSet.removeAll(setToExclude);
+                    System.out.println(narrowSet);
                 }
                 i += 5;
+                if (i >= RECORDS_NUMBER) {
+                    break;
+                }
                 System.out.println("numer ostatniego losowania: " + i);
                 results.showResults();
                 System.out.println("=======================================");

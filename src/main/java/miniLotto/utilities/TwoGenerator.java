@@ -33,7 +33,7 @@ public final class TwoGenerator {
         List<Map.Entry<K, V>> listOfFilteredMaps;
             for (int i = 0; i < numbers.length; i++) {
                 for (int j = i + 1; j < numbers.length; j++) {
-                    System.out.println("szukam dla " + numbers[i] + " i " + numbers[j]);
+//                    System.out.println("szukam dla " + numbers[i] + " i " + numbers[j]);
                          listOfFilteredMaps = Finder.filterLargeListOfMapsByFirstAndSecondNumber(
                             String.valueOf(numbers[i]),
                             String.valueOf(numbers[j]),
