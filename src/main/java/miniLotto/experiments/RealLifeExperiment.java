@@ -56,13 +56,13 @@ public class RealLifeExperiment {
                         break;
                     }
                     Set<Integer> nextDrawnSet = Arrays.stream(integerRecordsList.get(i + x)).collect(Collectors.toSet());
-                    Set<Integer> setToExclude = new HashSet<>(Set.copyOf(nextDrawnSet));
+                    System.out.println("nextDrawnSet: " + nextDrawnSet);
                     nextDrawnSet.retainAll(narrowSet);
-                    int result = 5 - nextDrawnSet.size();
+                    int result = nextDrawnSet.size();
                     //zapis result do ResultsOfFiveDraws
                     results.add(result);
-                    narrowSet.removeAll(setToExclude);
-                    System.out.println(narrowSet);
+                    narrowSet.removeAll(nextDrawnSet);
+                    System.out.println("narrowSet: " + narrowSet);
                 }
                 i += 5;
                 if (i >= RECORDS_NUMBER) {
