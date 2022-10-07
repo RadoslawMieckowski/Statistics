@@ -84,3 +84,4 @@ public class RealLifeExperiment {
     }
 }
 // sprawdź, ile trójek czwórek, i w których losowaniach
+//sparametryzuj ilość skreśleń
