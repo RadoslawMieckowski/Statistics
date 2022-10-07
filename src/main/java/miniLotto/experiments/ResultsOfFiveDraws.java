@@ -6,7 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ResultsOfFiveDraws {
-    private Map<String, Integer> results;
+    protected Map<String, Integer> results;
     private int addMethodCounter;
 
     public ResultsOfFiveDraws() {
@@ -43,6 +43,10 @@ public class ResultsOfFiveDraws {
 
     public int get(String key) {
         return results.get(key);
+    }
+
+    public Map<String, Integer> getResults() {
+        return new LinkedHashMap<>(results);
     }
 
     public String showResults() {

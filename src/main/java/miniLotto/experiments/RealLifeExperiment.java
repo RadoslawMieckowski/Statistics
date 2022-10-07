@@ -24,6 +24,7 @@ public class RealLifeExperiment {
         List<Integer[]> integerRecordsList;
         int RECORDS_NUMBER;
         int[] previousDraw = new int[5];
+        ResultsOfFiveDrawsGlobal resultsGlobal = new ResultsOfFiveDrawsGlobal();
 
         try {
             //wczytanie losowań jako tablice Integer
@@ -61,6 +62,7 @@ public class RealLifeExperiment {
                     int result = nextDrawnSet.size();
                     //zapis result do ResultsOfFiveDraws
                     results.add(result);
+                    resultsGlobal.add(result);
                     narrowSet.removeAll(nextDrawnSet);
                 }
                 i += 5;
@@ -72,6 +74,9 @@ public class RealLifeExperiment {
                 results.showResults();
                 System.out.println("=======================================");
             }
+            System.out.println("*******************************************");
+            System.out.println("Podsumowanie: \n" + resultsGlobal.showResults());
+            System.out.println("*******************************************");
 // sprawdź na małym zbiorze, czy wszystko działa dobrze
         } catch (IOException e) {
             e.printStackTrace();
