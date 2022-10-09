@@ -1,5 +1,7 @@
 package miniLotto.experiments;
 
+import miniLotto.utilities.Rounder;
+
 public class ResultsOfFiveDrawsGlobal extends ResultsOfFiveDraws{
 
     @Override
@@ -18,5 +20,12 @@ public class ResultsOfFiveDrawsGlobal extends ResultsOfFiveDraws{
             case 5 : results.put("Piątka", results.get("Piątka") + 1);
                 break;
         }
+    }
+
+    public double getSuccessFactor() {
+        double sum = results.values().stream().reduce(0, Integer::sum);
+        double sumOfSuccess = results.get("Trójka") + results.get("Czwórka") + results.get("Piątka");
+        double successRatio = sumOfSuccess/sum;
+        return Rounder.round(successRatio, 2);
     }
 }

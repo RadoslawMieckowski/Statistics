@@ -14,6 +14,9 @@ public class RealLifeExperiment {
 
         final int LIMIT_OF_EACH = 3;
         final int LIMIT_OF_OCCURENCES = 1;
+        final int THRESHOLD_iNDEX = 10;//określa, losowania które mają być nie brane pod uwagę.
+        final int NARROW_SET_SIZE_LIMIT = 12;   //jeżeli jest zbyt duży, nie zagramy, ale usuniemy z niego losowania
+        // uzasadnienie: te losowania mogą zaniżać statystyki
 
         //stworzenie listy podobieństw dwójek
         List<Map<String, Double>> listOfSimilarities = Serializer.deserializeListOfMaps(
@@ -56,7 +59,14 @@ public class RealLifeExperiment {
                     if (i + x == RECORDS_NUMBER) {
                         break;
                     }
+                    if (x > THRESHOLD_iNDEX) {//jak chcesz, żeby wszystkie były brane pod uwagę, to daj np.10. x nigdy nie jest 10
+                        continue;
+                    }
                     Set<Integer> nextDrawnSet = Arrays.stream(integerRecordsList.get(i + x)).collect(Collectors.toSet());
+                    if (narrowSet.size() > NARROW_SET_SIZE_LIMIT) {
+                        narrowSet.removeAll(nextDrawnSet);
+                        continue;
+                    }
                     System.out.println("losowanie: " + nextDrawnSet);
                     nextDrawnSet.retainAll(narrowSet);
                     int result = nextDrawnSet.size();
@@ -76,6 +86,7 @@ public class RealLifeExperiment {
             }
             System.out.println("*******************************************");
             System.out.println("Podsumowanie: \n" + resultsGlobal.showResults());
+            System.out.println("udział wygranych w ogólnej liczbie zakładów: " + resultsGlobal.getSuccessFactor());
             System.out.println("*******************************************");
 // sprawdź na małym zbiorze, czy wszystko działa dobrze
         } catch (IOException e) {
@@ -84,4 +95,5 @@ public class RealLifeExperiment {
     }
 }
 // sprawdź, ile trójek czwórek, i w których losowaniach
-//sparametryzuj ilość skreśleń
+//zbór skresleń na podstawie dopełnienia zbioru z proponowanymi liczbami
+//zrób track liste trójek/czwórek
