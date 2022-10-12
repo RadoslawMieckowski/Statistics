@@ -12,10 +12,10 @@ public class RealLifeExperiment {
     public static void main(String[] args) {
         final String PATH = "src/main/resources/wyniki-minilotto-sortowane100.csv";
 
-        final int LIMIT_OF_EACH = 3;
-        final int LIMIT_OF_OCCURENCES = 1;
-        final int THRESHOLD_iNDEX = 10;//określa, losowania które mają być nie brane pod uwagę.
-        final int NARROW_SET_SIZE_LIMIT = 12;   //jeżeli jest zbyt duży, nie zagramy, ale usuniemy z niego losowania
+        final int LIMIT_OF_EACH = 15;
+        final int LIMIT_OF_OCCURENCES = 5;
+        final int THRESHOLD_iNDEX = 5;//określa, losowania które mają być nie brane pod uwagę.
+        final int NARROW_SET_SIZE_LIMIT = 20;   //jeżeli jest zbyt duży, nie zagramy, ale usuniemy z niego losowania
         // uzasadnienie: te losowania mogą zaniżać statystyki
 
         //stworzenie listy podobieństw dwójek
@@ -53,21 +53,23 @@ public class RealLifeExperiment {
                         .generateNarrowProposedSetWithLimit(suggestedInNextDraws, previousDraw, LIMIT_OF_OCCURENCES);
                 //wczytanie następnego losowania jako Set
                 ResultsOfFiveDraws results = new ResultsOfFiveDraws();
-                System.out.println("proponowane na następne 5 losowań: " + narrowSet);
+                //System.out.println("proponowane na następne 5 losowań: " + narrowSet);
                 System.out.println();
                 for (int x = 1; x <= 5; x++) {
                     if (i + x == RECORDS_NUMBER) {
                         break;
                     }
-                    if (x > THRESHOLD_iNDEX) {//jak chcesz, żeby wszystkie były brane pod uwagę, to daj np.10. x nigdy nie jest 10
+                    Set<Integer> nextDrawnSet = Arrays.stream(integerRecordsList.get(i + x)).collect(Collectors.toSet());
+                    if (x < THRESHOLD_iNDEX) {//zrób tak, żeby były 2 ostatnie
+                        narrowSet.removeAll(nextDrawnSet);
                         continue;
                     }
-                    Set<Integer> nextDrawnSet = Arrays.stream(integerRecordsList.get(i + x)).collect(Collectors.toSet());
                     if (narrowSet.size() > NARROW_SET_SIZE_LIMIT) {
                         narrowSet.removeAll(nextDrawnSet);
                         continue;
                     }
                     System.out.println("losowanie: " + nextDrawnSet);
+                    System.out.println("proponowane na to losowanie: " + narrowSet);
                     nextDrawnSet.retainAll(narrowSet);
                     int result = nextDrawnSet.size();
                     //zapis result do ResultsOfFiveDraws
@@ -81,7 +83,9 @@ public class RealLifeExperiment {
                 }
                 System.out.println("numer ostatniego losowania: " + i);
                 System.out.println();
-                results.showResults();
+                if (results.getResults().size() != 0) {
+                    results.showResults();
+                }
                 System.out.println("=======================================");
             }
             System.out.println("*******************************************");
