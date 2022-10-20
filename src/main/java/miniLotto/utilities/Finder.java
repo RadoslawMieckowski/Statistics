@@ -171,7 +171,7 @@ public final class Finder {
                 }
             }
         }
-
+//        System.out.println("Metoda filterLargeListOfMapsByFirstAndSecondNumber OK ");
         return  Finder.findMostSimilarEntriesWithGivenTwo(returnList, limitOfEach);
     }
 }

@@ -113,4 +113,12 @@ class ListFactoryTest {
         assertThat(actualList.get(1)).contains(3, 4, 20, 29, 32);
     }
 
+    @Test
+    void readFileTest2() throws Exception {
+        final String PATH = "src/main/java/miniLotto/wyniki-minilotto-sortowane-parsed.csv";
+        List<Integer[]> integerRecordsList = ListFactory.readFile(PATH, "\t");;
+//        Presenter.presentList(integerRecordsList);
+        System.out.println(integerRecordsList.size());
+        System.out.println((Arrays.toString(integerRecordsList.get(integerRecordsList.size() - 1))));
+    }
 }

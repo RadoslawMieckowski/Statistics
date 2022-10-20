@@ -10,11 +10,11 @@ import java.util.stream.Collectors;
 
 public class RealLifeExperiment {
     public static void main(String[] args) {
-        final String PATH = "src/main/resources/wyniki-minilotto-sortowane100.csv";
+        final String PATH = "src/main/java/miniLotto/wyniki-minilotto-sortowane-parsed.csv";
 
-        final int LIMIT_OF_EACH = 39;
-        final int LIMIT_OF_OCCURENCES = 13;
-        final int THRESHOLD_iNDEX = 4;//określa, losowania które mają być nie brane pod uwagę.
+        final int LIMIT_OF_EACH = 45;
+        final int LIMIT_OF_OCCURENCES = 15;
+        final int THRESHOLD_iNDEX = 5;//określa, losowania które mają być nie brane pod uwagę.
         final int NARROW_SET_SIZE_LIMIT = 20;   //jeżeli jest zbyt duży, nie zagramy, ale usuniemy z niego losowania
         // uzasadnienie: te losowania mogą zaniżać statystyki
 
@@ -81,9 +81,9 @@ public class RealLifeExperiment {
                 if (i >= RECORDS_NUMBER) {
                     break;
                 }
-                System.out.println("numer ostatniego losowania: " + i);
+                System.out.println("numer ostatniego losowania: " + (i + 1));
                 System.out.println();
-                if (narrowSet.size() <= NARROW_SET_SIZE_LIMIT) {
+                if (narrowSet.size() <= NARROW_SET_SIZE_LIMIT && !results.isEmpty()) {
                     results.showResults();
                 }
                 System.out.println("=======================================");

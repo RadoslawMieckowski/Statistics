@@ -51,6 +51,13 @@ public class ResultsOfFiveDraws {
 
     public String showResults() {
         return Presenter.presentMap(results);
+    }
 
+    public boolean isEmpty() {
+        int result = results.values().stream().reduce(0, Integer::sum);
+        if (result == 0) {
+            return true;
+        }
+        return false;
     }
 }
