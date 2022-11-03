@@ -7,6 +7,7 @@ import miniLotto.utilities.TwoGenerator;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class RealLifeExperiment {
     public static void main(String[] args) {
@@ -64,18 +65,26 @@ public class RealLifeExperiment {
                         narrowSet.removeAll(nextDrawnSet);
                         continue;
                     }
-                    if (narrowSet.size() > NARROW_SET_SIZE_LIMIT) {
-                        narrowSet.removeAll(nextDrawnSet);
+                    if (narrowSet.size() > NARROW_SET_SIZE_LIMIT || narrowSet.size() < NARROW_SET_SIZE_LIMIT) {
+//                        narrowSet.removeAll(nextDrawnSet); nie jest potrzebne, skoro jest tylko 1-dno losowanie
                         continue;
                     }
                     System.out.println("losowanie: " + nextDrawnSet);
-                    System.out.println("proponowane na to losowanie: " + narrowSet);
-                    nextDrawnSet.retainAll(narrowSet);
+                    Set<Integer> allNumbers = Stream.iterate(1, z -> z + 1)
+                            .limit(42)
+                            .collect(Collectors.toSet());
+                    allNumbers.removeAll(narrowSet);
+                    Set<Integer> residuedNumbers = allNumbers.stream()
+                            .limit(NARROW_SET_SIZE_LIMIT)//sprawdź, ile wynosi size
+                            .collect(Collectors.toSet());
+                    System.out.println("proponowane na to losowanie: " + residuedNumbers);
+                    nextDrawnSet.retainAll(residuedNumbers);
                     int result = nextDrawnSet.size();
+                    System.out.println("trafiono: " + result);
                     //zapis result do ResultsOfFiveDraws
                     results.add(result);
                     resultsGlobal.add(result);
-                    narrowSet.removeAll(nextDrawnSet);
+//                    narrowSet.removeAll(allNumbers); nie jest
                 }
                 i += 5;
                 if (i >= RECORDS_NUMBER) {
