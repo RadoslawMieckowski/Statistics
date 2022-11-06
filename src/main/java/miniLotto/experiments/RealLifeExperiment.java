@@ -98,13 +98,19 @@ public class RealLifeExperiment {
             System.out.println("Podsumowanie: \n" + resultsGlobal.showResults());
             System.out.println("udział wygranych w ogólnej liczbie zakładów: " + resultsGlobal.getSuccessFactor());
             System.out.println("*******************************************");
+            System.out.println("interwały czwórek i piątek: ");
             Presenter.presentList(winningDistances);
             double median = Statistics.findMedian(winningDistances);
             System.out.println("Mediana czwórek i piątek: " + median);
             double q3 = Statistics.findQ3(winningDistances);
             System.out.println("Trzeci kwantyl: " + q3);
             double lastOccurence = winningDistances.getLast();
-            System.out.println("last occurrence: " + lastOccurence);
+            System.out.println("Last occurrence: " + lastOccurence);
+            double avg = winningDistances.stream()
+                    .mapToInt(Integer::intValue)
+                    .average()
+                    .getAsDouble();
+            System.out.println("Średni interwał: " + avg);
 // sprawdź na małym zbiorze, czy wszystko działa dobrze
         } catch (IOException e) {
             e.printStackTrace();
