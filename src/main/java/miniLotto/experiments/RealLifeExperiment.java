@@ -1,8 +1,6 @@
 package miniLotto.experiments;
 
-import miniLotto.utilities.ListFactory;
-import miniLotto.utilities.Serializer;
-import miniLotto.utilities.TwoGenerator;
+import miniLotto.utilities.*;
 
 import java.io.IOException;
 import java.util.*;
@@ -34,6 +32,8 @@ public class RealLifeExperiment {
             integerRecordsList = ListFactory.readFile(PATH, "\t");
             RECORDS_NUMBER = integerRecordsList.size();
             int i = 0;
+            int counter = 1;
+            LinkedList<Integer> winningDistances = new LinkedList<>();
             while (i < RECORDS_NUMBER) {
                 Integer[] previousBuffer = integerRecordsList.get(i);
                 //zapełnienie poprzedniego losowania
@@ -75,6 +75,12 @@ public class RealLifeExperiment {
                     //zapis result do ResultsOfFiveDraws
                     results.add(result);
                     resultsGlobal.add(result);
+                    if (result == 4 || result == 5) {// znacznik do winningDisances, rozkładu wygranych
+                        winningDistances.add(counter);
+                        counter = 1; // zresetuj warość licznika dystansu wygranych
+                    } else {
+                        counter++; // jak nie znaleźliśmy czwórki, lub piąti, to tylko zwiększamy licznik dystansu wygranych
+                    }
                     narrowSet.removeAll(nextDrawnSet);
                 }
                 i += 5;
@@ -92,6 +98,13 @@ public class RealLifeExperiment {
             System.out.println("Podsumowanie: \n" + resultsGlobal.showResults());
             System.out.println("udział wygranych w ogólnej liczbie zakładów: " + resultsGlobal.getSuccessFactor());
             System.out.println("*******************************************");
+            Presenter.presentList(winningDistances);
+            double median = Statistics.findMedian(winningDistances);
+            System.out.println("Mediana czwórek i piątek: " + median);
+            double q3 = Statistics.findQ3(winningDistances);
+            System.out.println("Trzeci kwantyl: " + q3);
+            double lastOccurence = winningDistances.getLast();
+            System.out.println("last occurrence: " + lastOccurence);
 // sprawdź na małym zbiorze, czy wszystko działa dobrze
         } catch (IOException e) {
             e.printStackTrace();
