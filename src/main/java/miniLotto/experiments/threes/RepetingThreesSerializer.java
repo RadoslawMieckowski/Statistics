@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-public class RepetingThreesDemo {
+public class RepetingThreesSerializer {
     static int oldTab[]=new int[5];
     static int newTab[]=new int[5];
     static int counter=0;
