@@ -1,7 +1,9 @@
 package miniLotto.utilities;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public final class Presenter {
     private Presenter() {}
@@ -13,6 +15,10 @@ public final class Presenter {
         }
         System.out.println(stringBuilder);
         return stringBuilder.toString();
+    }
+
+    public static void presentListOfIntTables(List<int[]> list) {
+        list.stream().map(Arrays::toString).forEach(System.out::println);
     }
 
     public static <K, V> String presentMap(Map<K, V> map,
