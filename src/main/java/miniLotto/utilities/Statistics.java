@@ -1,8 +1,6 @@
 package miniLotto.utilities;
 
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.lang.Math.*;
@@ -82,5 +80,25 @@ public final class Statistics {
         mianownik = pierwiastek1 * pierwiastek2;
         cosDistance = liczebnik / mianownik;
         return cosDistance;
+    }
+
+    public static void showStatistics(LinkedList<Integer> distances) {
+        System.out.println("interwały znalezionych przypadków: ");
+        System.out.println(distances);
+        double median = Statistics.findMedian(distances);
+        System.out.println("Mediana zbioru: " + median);
+        double q3 = Statistics.findQ3(distances);
+        System.out.println("Trzeci kwantyl zbioru: " + q3);
+        double lastOccurence = distances.getLast();// zależy nam na ostatnim przypadku nieposortowanego zbioru
+        System.out.println("Ostatni przypadek: " + lastOccurence);
+        double avg = distances.stream()
+                .mapToInt(Integer::intValue)
+                .average()
+                .getAsDouble();
+        System.out.println("Średni interwał: " + avg);
+        System.out.println("posortowane interwały znalezionych przypadków: ");
+        List<Integer> winningDistancesCopy = new ArrayList<>(distances);
+        Collections.sort(winningDistancesCopy);
+        System.out.println(winningDistancesCopy);
     }
 }
