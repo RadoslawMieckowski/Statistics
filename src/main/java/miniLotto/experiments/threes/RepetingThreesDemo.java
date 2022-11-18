@@ -45,6 +45,7 @@ public class RepetingThreesDemo {
             //dodawanie wszystkich liczb z poprzedniego losowania
             narrowSet.addAll(Arrays.stream(previousDraw).boxed().collect(Collectors.toSet()));
             System.out.println("Proponowane na następne losowanie: " + narrowSet);
+            System.out.println("size proponowanego zbioru: " + narrowSet.size());
             //wczytanie następnego losowania jako Set
             Set<Integer> nextDrawnSet = Arrays.stream(newTabsList.get(i)).boxed().collect(Collectors.toSet());
             System.out.println("Następne losowanie: " + nextDrawnSet);
