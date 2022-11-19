@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 
 public class RepetingThreesDemo {
     public static void main(String[] args) {
-        final int LIMIT_OF_EACH = 45;
-        final int LIMIT_OF_OCCURENCES = 15;
+        final int LIMIT_OF_EACH = 4;
+        final int LIMIT_OF_OCCURENCES = 2;
         //rozpakowanie list
         List<int[]> oldTabsList = Serializer.deserialize("src/main/resources/oldTabListToSerialize.ser");
         List<int[]> newTabsList = Serializer.deserialize("src/main/resources/newTabListToSerialize.ser");
